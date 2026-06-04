@@ -10,1878 +10,717 @@
     @font-face {
       font-family: "Sora";
       src: url("assets/Sora-VariableFont_wght.ttf") format("truetype");
-      font-weight: 100 900;
+      font-weight: 100 800;
       font-style: normal;
       font-display: swap;
     }
 
     :root {
-      --black: #02060b;
-      --navy: #061221;
-      --navy-2: #0a1b31;
-      --navy-3: #10253d;
-      --blue: #1677ff;
-      --blue-2: #56a0ff;
-      --green: #23c071;
-      --red: #ff5f52;
-      --ink: #05070c;
-      --slate: #4d5b70;
-      --muted: #8390a3;
-      --line: #dce4ef;
-      --line-dark: rgba(255,255,255,.14);
-      --white: #fff;
-      --soft: #f7faff;
-      --radius: 6px;
-      --shadow: 0 24px 80px rgba(0,0,0,.34);
-      --ease: cubic-bezier(.2,.7,.2,1);
-      --scroll-y: 0px;
+      --bg: #ffffff;
+      --bg-soft: #f5f7fa;
+      --ink: #0a0e16;
+      --ink-soft: #232c3a;
+      --slate: #586377;
+      --muted: #8b94a4;
+      --line: #e8ebf1;
+      --line-strong: #dbe0e9;
+      --accent: #1677ff;
+      --accent-press: #0f63e6;
+      --accent-soft: #eaf2ff;
+      --accent-tint: #f4f8ff;
+      --green: #18a957;
+      --dark: #080b12;
+      --dark-2: #0d1422;
+      --dark-line: rgba(255, 255, 255, .12);
+      --dark-muted: rgba(255, 255, 255, .60);
+      --r-sm: 10px;
+      --r: 14px;
+      --r-lg: 22px;
+      --shadow-sm: 0 1px 2px rgba(16, 24, 40, .04), 0 2px 6px rgba(16, 24, 40, .05);
+      --shadow-md: 0 14px 34px -16px rgba(16, 24, 40, .20);
+      --shadow-lg: 0 36px 70px -28px rgba(13, 20, 34, .28);
+      --ease: cubic-bezier(.22, .68, .24, 1);
+      --maxw: 1180px;
       color-scheme: light;
     }
 
     * { box-sizing: border-box; }
-
-    html { scroll-behavior: auto; }
+    html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
 
     body {
       margin: 0;
-      overflow-x: hidden;
-      background: var(--white);
+      background: var(--bg);
       color: var(--ink);
       font-family: "Sora", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.45;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
 
     a { color: inherit; text-decoration: none; }
     img, svg { display: block; max-width: 100%; }
-    button, input, select, textarea { font: inherit; }
-    ::selection { background: rgba(22,119,255,.2); }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    ::selection { background: rgba(22, 119, 255, .16); }
 
-    .container {
-      width: min(1168px, calc(100% - 44px));
-      margin: 0 auto;
+    .wrap { width: min(var(--maxw), calc(100% - 48px)); margin: 0 auto; }
+
+    /* ---------- Typography ---------- */
+    h1, h2, h3, h4, p { margin: 0; }
+
+    .display {
+      font-size: clamp(43px, 5.6vw, 76px);
+      font-weight: 600;
+      letter-spacing: -.035em;
+      line-height: 1.02;
+      color: var(--ink);
     }
 
-    .grid-bg {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size: 54px 54px;
-      mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-      transform: translateY(calc(var(--scroll-y) * -.05));
+    .h2 {
+      font-size: clamp(31px, 3.9vw, 50px);
+      font-weight: 600;
+      letter-spacing: -.03em;
+      line-height: 1.06;
+      color: var(--ink);
     }
 
+    .h3 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -.015em;
+      line-height: 1.25;
+      color: var(--ink);
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 22px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 22px;
+      height: 1.5px;
+      background: var(--accent);
+      opacity: .55;
+    }
+
+    .lede {
+      color: var(--slate);
+      font-size: clamp(16px, 1.5vw, 19px);
+      line-height: 1.62;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      height: 50px;
+      padding: 0 24px;
+      border-radius: 11px;
+      border: 1px solid transparent;
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: -.01em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease), box-shadow .18s var(--ease), color .18s var(--ease);
+    }
+
+    .btn svg { width: 17px; height: 17px; stroke-width: 2; }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 10px 24px -10px rgba(22, 119, 255, .55);
+    }
+    .btn-primary:hover { background: var(--accent-press); transform: translateY(-1px); box-shadow: 0 16px 30px -10px rgba(22, 119, 255, .6); }
+    .btn-primary svg { transition: transform .2s var(--ease); }
+    .btn-primary:hover svg { transform: translateX(3px); }
+
+    .btn-ghost {
+      background: #fff;
+      border-color: var(--line-strong);
+      color: var(--ink);
+    }
+    .btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+    .btn-sm { height: 44px; padding: 0 18px; font-size: 13.5px; border-radius: 10px; }
+
+    .textlink {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .textlink svg { width: 15px; height: 15px; stroke-width: 2; transition: transform .2s var(--ease); }
+    .textlink:hover svg { transform: translateX(3px); }
+
+    /* ---------- Nav ---------- */
     .nav {
       position: sticky;
       top: 0;
-      z-index: 80;
-      background: rgba(2,6,11,.92);
-      color: var(--white);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      backdrop-filter: blur(18px);
+      z-index: 90;
+      background: rgba(255, 255, 255, .80);
+      backdrop-filter: saturate(180%) blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
     }
-
+    .nav.scrolled {
+      border-bottom-color: var(--line);
+      box-shadow: 0 1px 0 rgba(16, 24, 40, .02), 0 8px 30px -22px rgba(16, 24, 40, .25);
+    }
     .nav-inner {
-      height: 76px;
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
-
-    .brand {
-      width: 254px;
-      flex: 0 0 auto;
-    }
-
-    .brand img {
-      width: 238px;
-      max-height: 42px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 18px rgba(22,119,255,.2));
-    }
-
-    .nav-links {
-      margin-left: auto;
+      height: 74px;
       display: flex;
       align-items: center;
       gap: 28px;
     }
-
+    .brand { flex: 0 0 auto; display: inline-flex; }
+    .brand img { height: 25px; width: auto; }
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
     .nav-links a {
       position: relative;
-      color: rgba(255,255,255,.78);
-      font-size: 12px;
-      font-weight: 700;
-      transition: color 160ms var(--ease);
+      color: var(--slate);
+      font-size: 14.5px;
+      font-weight: 500;
+      letter-spacing: -.01em;
+      transition: color .16s var(--ease);
     }
-
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--white); }
-
-    .nav-links a::after {
+    .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+    .nav-links a.active::after {
       content: "";
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -11px;
-      height: 2px;
-      transform: scaleX(0);
-      transform-origin: center;
-      background: var(--blue);
-      transition: transform 180ms var(--ease);
+      left: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
     }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after { transform: scaleX(1); }
-
-    .btn {
-      min-height: 48px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 22px;
-      border-radius: 4px;
-      border: 1px solid transparent;
-      color: var(--white);
-      background: transparent;
-      font-size: 11px;
-      font-weight: 850;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      line-height: 1.15;
-      text-align: center;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: transform 180ms var(--ease), border-color 180ms var(--ease), background 180ms var(--ease), box-shadow 180ms var(--ease);
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-
-    .btn-primary {
-      background: var(--blue);
-      border-color: var(--blue);
-      box-shadow: 0 18px 36px rgba(22,119,255,.28);
-    }
-
-    .btn-primary:hover {
-      background: #0f68e7;
-      border-color: #0f68e7;
-    }
-
-    .btn-ghost {
-      border-color: rgba(255,255,255,.28);
-      background: rgba(255,255,255,.02);
-    }
-
-    .btn-ghost:hover { background: rgba(255,255,255,.08); }
+    .nav-cta { margin-left: 4px; }
 
     .menu-btn {
       display: none;
-      width: 42px;
-      height: 42px;
+      width: 44px; height: 44px;
       margin-left: auto;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 4px;
-      background: transparent;
-      color: var(--white);
       align-items: center;
       justify-content: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
     }
-
-    .menu-lines,
-    .menu-lines::before,
-    .menu-lines::after {
+    .menu-lines, .menu-lines::before, .menu-lines::after {
       content: "";
       display: block;
-      width: 18px;
-      height: 2px;
+      width: 18px; height: 2px;
+      border-radius: 2px;
       background: currentColor;
-      transition: transform 180ms var(--ease), opacity 180ms var(--ease);
+      transition: transform .2s var(--ease), opacity .2s var(--ease);
     }
-
     .menu-lines::before { transform: translateY(-6px); }
     .menu-lines::after { transform: translateY(4px); }
     body.menu-open .menu-lines { transform: rotate(45deg); }
     body.menu-open .menu-lines::before { transform: translateY(0) rotate(90deg); }
     body.menu-open .menu-lines::after { opacity: 0; }
 
-    main section[id] { scroll-margin-top: 76px; }
+    main section[id], span[id] { scroll-margin-top: 90px; }
 
-    h1, h2, h3, p { margin-top: 0; }
+    /* ---------- Section rhythm ---------- */
+    .section { padding: clamp(80px, 10vw, 140px) 0; }
+    .section-head { max-width: 760px; margin-bottom: clamp(46px, 6vw, 70px); }
+    .section-head .h2 { margin-bottom: 22px; }
+    .section-head .lede { max-width: 620px; }
 
-    h1, h2, h3 {
-      font-weight: 870;
-      letter-spacing: -.035em;
-      line-height: .98;
-    }
-
-    h1 {
-      max-width: 560px;
-      margin-bottom: 24px;
-      font-size: clamp(48px, 5vw, 68px);
-    }
-
-    h2 {
-      margin-bottom: 18px;
-      font-size: clamp(34px, 4.2vw, 60px);
-    }
-
-    h3 {
-      margin-bottom: 10px;
-      font-size: 20px;
-      line-height: 1.06;
-    }
-
-    .kicker {
-      margin: 0 0 16px;
-      color: var(--blue);
-      font-size: 11px;
-      font-weight: 850;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-    }
-
-    .dark .kicker,
-    .hero .kicker,
-    .contact .kicker { color: #74adff; }
-
-    .lede {
-      max-width: 560px;
-      margin-bottom: 0;
-      color: var(--slate);
-      font-size: 16px;
-      line-height: 1.75;
-    }
-
-    .dark .lede,
-    .dark p,
-    .hero p,
-    .contact p { color: rgba(255,255,255,.7); }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      color: var(--white);
-      background:
-        radial-gradient(circle at 72% 14%, rgba(22,119,255,.28), transparent 32%),
-        linear-gradient(135deg, #061221 0%, #02060b 74%);
-    }
-
-    .hero::after {
+    /* ---------- Hero ---------- */
+    .hero { position: relative; overflow: hidden; }
+    .hero::before {
       content: "";
       position: absolute;
-      right: min(14vw, 240px);
-      bottom: -18px;
-      width: min(420px, 48vw);
-      height: min(360px, 42vw);
+      top: -10%; right: -6%;
+      width: 52vw; height: 52vw;
+      max-width: 760px; max-height: 760px;
+      background: radial-gradient(circle, rgba(22, 119, 255, .10), transparent 62%);
       pointer-events: none;
-      opacity: .22;
-      background:
-        linear-gradient(135deg, transparent 44%, rgba(22,119,255,.8) 45%, transparent 47%) center 82% / 34% 34% no-repeat,
-        repeating-linear-gradient(124deg, transparent 0 26px, rgba(255,255,255,.16) 27px 29px, transparent 30px 54px);
-      clip-path: polygon(50% 0, 100% 100%, 83% 100%, 50% 34%, 17% 100%, 0 100%);
-      transform: translateY(calc(var(--scroll-y) * .08));
     }
-
-    .hero-grid {
+    .hero-inner {
       position: relative;
-      z-index: 1;
-      min-height: 630px;
       display: grid;
-      grid-template-columns: .82fr 1fr;
-      gap: 70px;
+      grid-template-columns: 1.04fr .96fr;
+      gap: clamp(40px, 5vw, 76px);
       align-items: center;
-      padding: 46px 0 58px;
+      padding: clamp(56px, 7vw, 96px) 0 clamp(60px, 7vw, 104px);
     }
+    .hero-copy { max-width: 580px; }
+    .hero h1 { margin-bottom: 24px; }
+    .hero .lede { max-width: 470px; margin-bottom: 34px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
 
-    .hero-copy {
-      padding-top: 10px;
-    }
-
-    .hero-copy p {
-      max-width: 470px;
-      margin-bottom: 0;
-      font-size: 18px;
-      line-height: 1.65;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      margin-top: 34px;
-      flex-wrap: wrap;
-    }
-
-    .signal-row {
+    .principles {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 62px;
-      max-width: 650px;
+      grid-template-columns: repeat(2, auto);
+      gap: 16px 34px;
+      margin-top: 46px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+      width: fit-content;
     }
-
-    .signal {
-      display: grid;
-      grid-template-columns: 22px 1fr;
+    .principle {
+      display: inline-flex;
+      align-items: center;
       gap: 10px;
-      align-items: start;
-      color: rgba(255,255,255,.76);
-      font-size: 12px;
-      line-height: 1.25;
-      font-weight: 650;
+      color: var(--ink-soft);
+      font-size: 13.5px;
+      font-weight: 500;
     }
+    .principle svg { width: 18px; height: 18px; color: var(--accent); stroke-width: 1.7; flex: 0 0 auto; }
 
-    .signal svg {
-      width: 20px;
-      height: 20px;
-      color: #8bbcff;
-      stroke-width: 1.7;
+    /* ---------- Hero panel (calm dashboard) ---------- */
+    .panel {
+      position: relative;
+      padding: 26px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-lg);
     }
-
-    .dashboard {
-      width: 100%;
-      min-height: 500px;
-      padding: 22px;
-      border: 1px solid rgba(119,174,255,.32);
-      border-radius: 7px;
-      background: rgba(3,12,23,.78);
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.06);
-      backdrop-filter: blur(14px);
-      transform: translateY(calc(var(--scroll-y) * .025));
-    }
-
     .panel-head {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
-
-    .panel-title {
-      color: var(--white);
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: -.01em;
-    }
-
-    .live {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #7ee4aa;
-      font-size: 12px;
-      font-weight: 760;
-    }
-
+    .panel-head strong { font-size: 14.5px; font-weight: 600; letter-spacing: -.01em; }
+    .live { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 12px; font-weight: 600; }
     .live::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #25d179;
-      box-shadow: 0 0 0 5px rgba(35,192,113,.12);
+      content: ""; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); box-shadow: 0 0 0 4px rgba(24, 169, 87, .14);
     }
-
-    .stat-grid {
+    .kpis {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 13px;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
       margin-bottom: 18px;
     }
+    .kpi { padding: 16px 16px 18px; border-right: 1px solid var(--line); }
+    .kpi:last-child { border-right: 0; }
+    .kpi small { display: block; color: var(--muted); font-size: 11.5px; font-weight: 500; margin-bottom: 9px; }
+    .kpi b { display: block; font-size: 27px; font-weight: 600; letter-spacing: -.04em; line-height: 1; }
+    .kpi i { font-style: normal; font-size: 11.5px; font-weight: 600; }
+    .kpi .pos { color: var(--green); }
+    .kpi .neg { color: #d8553f; }
 
-    .stat {
-      min-height: 106px;
-      padding: 16px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 4px;
-      background: rgba(7,20,36,.65);
-    }
-
-    .stat span {
-      display: block;
-      margin-bottom: 12px;
-      color: rgba(255,255,255,.56);
-      font-size: 11px;
-    }
-
-    .stat strong {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 8px;
-      color: var(--white);
-      font-size: 30px;
-      font-weight: 780;
-      letter-spacing: -.04em;
-    }
-
-    .stat .up { color: var(--green); font-size: 11px; letter-spacing: 0; }
-    .stat .risk { color: var(--red); }
-
-    .overview-grid {
-      display: grid;
-      grid-template-columns: 1.34fr .72fr;
-      gap: 16px;
-    }
-
-    .mini-card {
-      min-height: 246px;
+    .chart {
       padding: 18px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 4px;
-      background: rgba(7,20,36,.65);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      background: linear-gradient(180deg, #fff, var(--accent-tint));
     }
-
-    .micro-label {
-      margin: 0 0 16px;
-      color: rgba(255,255,255,.56);
-      font-size: 10px;
-      font-weight: 850;
-      letter-spacing: .16em;
-      text-transform: uppercase;
+    .chart-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .chart-top span { color: var(--muted); font-size: 11.5px; font-weight: 600; letter-spacing: .04em; }
+    .chart-top em { font-style: normal; color: var(--green); font-size: 11.5px; font-weight: 600; }
+    .chart svg { width: 100%; height: 88px; display: block; }
+    .panel-float {
+      position: absolute;
+      left: -22px; bottom: 34px;
+      display: flex; align-items: center; gap: 11px;
+      padding: 13px 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      box-shadow: var(--shadow-md);
     }
+    .panel-float .dot { width: 34px; height: 34px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; }
+    .panel-float .dot svg { width: 18px; height: 18px; stroke-width: 1.9; }
+    .panel-float b { display: block; font-size: 13px; font-weight: 600; letter-spacing: -.01em; }
+    .panel-float small { color: var(--muted); font-size: 11px; }
 
-    .status-bars {
-      display: grid;
-      gap: 14px;
-    }
-
-    .status-row {
-      display: grid;
-      grid-template-columns: 90px 1fr 34px;
-      align-items: center;
-      gap: 13px;
-      color: rgba(255,255,255,.78);
-      font-size: 12px;
-      font-weight: 650;
-    }
-
-    .bar {
-      height: 8px;
-      overflow: hidden;
-      border-radius: 99px;
-      background: rgba(255,255,255,.08);
-    }
-
-    .bar span {
-      display: block;
-      width: var(--w);
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #0c70ff, #6db0ff);
-      animation: grow 1.2s var(--ease) both;
-    }
-
-    @keyframes grow {
-      from { transform: scaleX(.1); transform-origin: left; }
-      to { transform: scaleX(1); transform-origin: left; }
-    }
-
-    .risk-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 13px 0;
-      color: rgba(255,255,255,.78);
-      border-bottom: 1px solid rgba(255,255,255,.1);
-      font-size: 12px;
-    }
-
-    .risk-row:last-child { border-bottom: 0; }
-    .risk-row strong { color: var(--white); }
-
-    .trust-strip {
-      position: relative;
-      z-index: 2;
-      color: var(--ink);
-      background:
-        linear-gradient(90deg, rgba(255,255,255,.96), rgba(244,248,255,.94)),
-        var(--white);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
+    /* ---------- Trust strip ---------- */
+    .trust { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-soft); }
     .trust-inner {
-      min-height: 128px;
-      display: grid;
-      grid-template-columns: 1.35fr repeat(4, 1fr);
-      gap: 30px;
+      display: flex;
       align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding: 26px 0;
     }
+    .trust-label { color: var(--muted); font-size: 12.5px; font-weight: 600; max-width: 180px; line-height: 1.4; }
+    .trust-items { display: flex; flex-wrap: wrap; gap: 14px 38px; margin-left: auto; }
+    .trust-item { display: inline-flex; align-items: center; gap: 11px; color: var(--ink-soft); font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
+    .trust-item svg { width: 20px; height: 20px; color: var(--accent); stroke-width: 1.6; }
 
-    .trust-label {
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 850;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
-    .trust-item {
+    /* ---------- Services ---------- */
+    .services-grid {
       display: grid;
-      grid-template-columns: 34px 1fr;
-      gap: 13px;
-      align-items: center;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
-
-    .trust-item svg {
-      width: 30px;
-      height: 30px;
-      color: var(--blue);
-      stroke-width: 1.45;
-    }
-
-    .trust-item strong {
-      display: block;
-      color: var(--ink);
-      font-size: 13px;
-      line-height: 1.18;
-    }
-
-    .section {
-      position: relative;
-      padding: 78px 0;
-      overflow: hidden;
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: .95fr .9fr;
-      gap: 80px;
-      align-items: end;
-      margin-bottom: 48px;
-    }
-
-    .section-head h2 { max-width: 520px; }
-    .section-head .lede { max-width: 570px; }
-
-    .services {
-      background:
-        radial-gradient(circle at 10% 10%, rgba(22,119,255,.08), transparent 30%),
-        var(--white);
-    }
-
-    .accent-line {
-      width: 78px;
-      height: 3px;
-      margin-top: 20px;
-      background: var(--blue);
-    }
-
-    .service-menu {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .service-card {
-      min-height: 244px;
+    .svc {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 24px 22px 26px;
-      border-right: 1px solid var(--line);
-      transition: background 180ms var(--ease), transform 180ms var(--ease);
-    }
-
-    .service-card:first-child { border-left: 0; }
-    .service-card:last-child { border-right: 0; }
-
-    .service-card:hover {
-      background: #f2f7ff;
-      transform: translateY(-2px);
-    }
-
-    .service-card svg {
-      width: 36px;
-      height: 36px;
-      color: var(--blue);
-      stroke-width: 1.65;
-      margin-bottom: 34px;
-    }
-
-    .service-card h3 {
-      min-height: 44px;
-      margin-bottom: 12px;
-      font-size: 18px;
-      letter-spacing: -.03em;
-    }
-
-    .service-card p {
-      margin: 0;
-      color: var(--slate);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .arrow {
-      margin-top: 22px;
-      color: var(--blue);
-      font-size: 18px;
-      font-weight: 900;
-      line-height: 1;
-      white-space: nowrap;
-    }
-
-    .agency {
-      position: relative;
-      overflow: hidden;
-      color: var(--ink);
-      background:
-        linear-gradient(110deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.98) 46%, rgba(244,248,255,.92) 46%, rgba(244,248,255,.92) 100%),
-        var(--white);
-    }
-
-    .agency::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(rgba(22,119,255,.055) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(22,119,255,.055) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: linear-gradient(90deg, #000, #000 42%, transparent 88%);
-      opacity: .75;
-    }
-
-    .agency-layout {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, .9fr) minmax(440px, 1.1fr);
-      gap: 58px;
-      align-items: start;
-    }
-
-    .agency-copy h2 {
-      max-width: 620px;
-      margin-bottom: 20px;
-      color: var(--ink);
-      font-size: clamp(38px, 4.4vw, 62px);
-      line-height: 1;
-    }
-
-    .agency-copy h2::after {
-      content: ".";
-      color: var(--blue);
-    }
-
-    .agency-copy .lede {
-      max-width: 590px;
-      color: var(--slate);
-    }
-
-    .agency-proof {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1px;
-      margin: 34px 0;
+      padding: 30px 28px 26px;
+      background: #fff;
       border: 1px solid var(--line);
-      background: var(--line);
+      border-radius: var(--r);
+      transition: transform .22s var(--ease), border-color .22s var(--ease), box-shadow .22s var(--ease);
     }
-
-    .agency-proof-item {
-      min-height: 110px;
-      padding: 20px;
-      background: rgba(255,255,255,.94);
+    .svc:hover { transform: translateY(-4px); border-color: rgba(22, 119, 255, .35); box-shadow: var(--shadow-md); }
+    .svc-icon {
+      width: 46px; height: 46px;
+      display: grid; place-items: center;
+      margin-bottom: 26px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      color: var(--accent);
     }
+    .svc-icon svg { width: 23px; height: 23px; stroke-width: 1.7; }
+    .svc h3 { margin-bottom: 10px; }
+    .svc p { color: var(--slate); font-size: 14.5px; line-height: 1.55; margin-bottom: 22px; }
+    .svc .textlink { margin-top: auto; }
 
-    .agency-proof-item strong {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--blue);
-      font-size: 24px;
-      line-height: 1;
-      letter-spacing: -.04em;
-    }
-
-    .agency-proof-item span {
-      color: var(--slate);
-      font-size: 12px;
-      font-weight: 680;
-      line-height: 1.35;
-    }
-
-    .agency-services-grid {
-      position: relative;
-      z-index: 1;
+    /* ---------- Agency ---------- */
+    .agency { background: var(--bg-soft); }
+    .agency-top {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 34px;
-    }
-
-    .agency-service {
-      min-height: 198px;
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background: rgba(255,255,255,.92);
-      box-shadow: 0 16px 44px rgba(6,18,33,.07);
-      transition: transform 180ms var(--ease), border-color 180ms var(--ease), box-shadow 180ms var(--ease);
-    }
-
-    .agency-service:hover {
-      transform: translateY(-3px);
-      border-color: rgba(22,119,255,.32);
-      box-shadow: 0 24px 56px rgba(6,18,33,.1);
-    }
-
-    .agency-service svg {
-      width: 28px;
-      height: 28px;
-      margin-bottom: 24px;
-      color: var(--blue);
-      stroke-width: 1.65;
-    }
-
-    .agency-service h3 {
-      margin-bottom: 10px;
-      font-size: 19px;
-      letter-spacing: -.035em;
-    }
-
-    .agency-service p {
-      margin: 0;
-      color: var(--slate);
-      font-size: 13px;
-      line-height: 1.58;
-    }
-
-    .agency-visual {
-      position: relative;
-      margin-top: 10px;
-      border: 1px solid rgba(15,32,54,.12);
-      border-radius: 6px;
-      overflow: hidden;
-      background: var(--white);
-      box-shadow:
-        0 1px 0 rgba(255,255,255,.9) inset,
-        0 28px 80px rgba(6,18,33,.14);
-    }
-
-    .agency-visual img {
-      width: 100%;
-      aspect-ratio: 16 / 10.6;
-      object-fit: cover;
-      filter: saturate(.98) contrast(1.01);
-    }
-
-    .agency-visual::after {
-      display: none;
-    }
-
-    .agency-caption {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
+      grid-template-columns: .92fr 1.08fr;
+      gap: clamp(40px, 5vw, 72px);
       align-items: center;
+    }
+    .proof { margin: 32px 0 34px; border-top: 1px solid var(--line-strong); }
+    .proof-row {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 18px;
+      align-items: center;
+      padding: 17px 4px;
+      border-bottom: 1px solid var(--line-strong);
+    }
+    .proof-row b { color: var(--accent); font-size: 15px; font-weight: 700; letter-spacing: .02em; }
+    .proof-row span { color: var(--ink-soft); font-size: 15.5px; font-weight: 500; letter-spacing: -.01em; }
+
+    .figure {
+      border: 1px solid var(--line-strong);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: #fff;
+      box-shadow: var(--shadow-lg);
+    }
+    .figure img { width: 100%; aspect-ratio: 16 / 10.4; object-fit: cover; }
+    .figure-cap {
+      display: flex; align-items: center; gap: 14px;
       padding: 18px 20px;
       border-top: 1px solid var(--line);
-      background: rgba(255,255,255,.94);
     }
+    .figure-cap .mark { width: 38px; height: 38px; flex: 0 0 auto; border-radius: 10px; background: var(--accent); color: #fff; display: grid; place-items: center; }
+    .figure-cap .mark svg { width: 19px; height: 19px; stroke-width: 1.9; }
+    .figure-cap p { font-size: 13px; color: var(--slate); line-height: 1.45; }
+    .figure-cap b { color: var(--ink); font-weight: 600; }
 
-    .agency-caption strong {
-      color: var(--ink);
-      font-size: 13px;
-      line-height: 1.25;
+    .agency-svcs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      margin-top: 60px;
+      background: var(--line-strong);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--r);
+      overflow: hidden;
     }
+    .agency-svc { padding: 30px 30px 28px; background: var(--bg-soft); }
+    .agency-svc svg.lead { width: 26px; height: 26px; color: var(--accent); stroke-width: 1.7; margin-bottom: 20px; }
+    .agency-svc h3 { margin-bottom: 10px; font-size: 19px; }
+    .agency-svc p { color: var(--slate); font-size: 14.5px; line-height: 1.55; }
 
-    .agency-caption span {
-      display: block;
-      margin-top: 5px;
-      color: var(--slate);
-      font-size: 12px;
-      line-height: 1.4;
-    }
-
-    .agency-caption-mark {
-      display: inline-grid;
-      width: 42px;
-      height: 42px;
-      place-items: center;
-      border-radius: 50%;
-      color: var(--white);
-      background: var(--blue);
-      box-shadow: 0 14px 32px rgba(22,119,255,.28);
-    }
-
-    .agency-caption-mark svg {
-      width: 21px;
-      height: 21px;
-      stroke-width: 1.8;
-    }
-
-    .agency-flow {
-      display: none;
-    }
-
-    .light-band {
-      background:
-        radial-gradient(circle at 86% 18%, rgba(22,119,255,.09), transparent 28%),
-        var(--white);
-      background-color: var(--white);
-      color: var(--ink);
-    }
-
-    .light-band .section-head .lede,
-    .light-band p {
-      color: var(--slate);
-    }
-
-    .light-band .kicker {
-      color: var(--blue);
-    }
-
-    .light-band .grid-bg {
-      background:
-        linear-gradient(rgba(22,119,255,.055) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(22,119,255,.055) 1px, transparent 1px);
-    }
-
-    .light-band .audience-card {
-      border: 1px solid var(--line);
-      background: var(--white);
-      box-shadow: 0 16px 44px rgba(6,18,33,.06);
-    }
-
-    .light-band .audience-card:hover {
-      border-color: rgba(22,119,255,.32);
-    }
-
-    .light-band .audience-image {
-      background:
-        linear-gradient(rgba(255,255,255,.02), rgba(255,255,255,.42)),
-        var(--image) center / cover;
-      filter: saturate(.76);
-    }
-
-    .light-band .audience-body {
-      background: var(--white);
-    }
-
-    .light-band .audience-body svg {
-      color: var(--blue);
-    }
-
-    .light-band .audience-body h3 {
-      color: var(--ink);
-    }
-
-    .light-band .audience-body p {
-      color: var(--slate);
-    }
-
-    .flow-step {
-      display: none;
-    }
-
-    .legacy-agency-flow {
-      content: "";
-      display: none;
-    }
-
+    /* ---------- Approach (dark anchor) ---------- */
     .approach {
       position: relative;
       overflow: hidden;
-      color: var(--white);
-      background: #02060b;
+      background: var(--dark);
+      color: #fff;
     }
-
     .approach::before {
       content: "";
       position: absolute;
-      inset: 0;
+      top: -20%; left: 50%;
+      width: 900px; height: 600px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, rgba(22, 119, 255, .22), transparent 60%);
       pointer-events: none;
-      background:
-        linear-gradient(rgba(22,119,255,.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(22,119,255,.1) 1px, transparent 1px),
-        radial-gradient(circle at 72% 32%, rgba(22,119,255,.3), transparent 31%),
-        linear-gradient(90deg, rgba(0,0,0,.92), rgba(4,13,28,.78) 45%, rgba(2,6,11,.98));
-      background-size: 64px 64px, 64px 64px, auto, auto;
-      opacity: .95;
     }
+    .approach .wrap { position: relative; }
+    .approach .kicker { color: #6fa8ff; }
+    .approach .kicker::before { background: #6fa8ff; }
+    .approach .h2 { color: #fff; }
+    .approach .lede { color: var(--dark-muted); }
 
-    .approach-stage {
-      position: relative;
-      z-index: 1;
-      width: min(1168px, calc(100% - 44px));
-      min-height: 0;
-      margin: 0 auto;
-      padding: 38px 0 0;
-    }
-
-    .approach-logo-bg {
-      position: absolute;
-      inset: 0 -70px auto auto;
-      width: min(680px, 58vw);
-      height: 540px;
-      opacity: .7;
-      pointer-events: none;
-      background: url("assets/website-logo-bg.png") right top / cover no-repeat;
-      mix-blend-mode: screen;
-      filter: saturate(1.12);
-    }
-
-    .approach-head {
-      position: relative;
-      z-index: 3;
-      display: block;
-      max-width: 640px;
-      margin-bottom: 8px;
-    }
-
-    .approach-head h2 {
-      max-width: 640px;
-      margin: 0;
-      font-size: clamp(44px, 4.2vw, 60px);
-      line-height: .99;
-      text-shadow: 0 16px 44px rgba(0,0,0,.58);
-    }
-
-    .approach-head h2::after {
-      content: ".";
-      color: var(--blue);
-    }
-
-    .approach-head .lede {
-      max-width: 510px;
-      margin-top: 16px;
-      margin-bottom: 0;
-      color: rgba(255,255,255,.7);
-      font-size: 15px;
-      line-height: 1.62;
-    }
-
-    .operating-map {
-      position: relative;
-      z-index: 2;
+    .flow {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 10px;
-      min-height: 0;
-      margin: 26px 0 20px;
-      padding: 12px;
-      border: 1px solid rgba(65,150,255,.28);
-      border-radius: 10px;
-      background:
-        linear-gradient(90deg, rgba(7,24,44,.88), rgba(7,17,30,.62)),
-        rgba(2,9,17,.72);
-      box-shadow:
-        0 1px 0 rgba(255,255,255,.07) inset,
-        0 18px 54px rgba(0,0,0,.28);
-      backdrop-filter: blur(12px);
+      grid-template-columns: repeat(5, 1fr);
+      gap: 22px;
+      margin-top: 8px;
+      counter-reset: step;
     }
-
-    .operating-map::before {
+    .step { position: relative; padding-top: 56px; }
+    .step::before {
       content: "";
       position: absolute;
-      left: 34px;
-      right: 34px;
-      top: 50%;
+      top: 21px; left: 21px; right: -22px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(22,119,255,.55), transparent);
-      pointer-events: none;
+      background: linear-gradient(90deg, rgba(111, 168, 255, .55), rgba(111, 168, 255, .12));
     }
-
-    .map-path {
-      display: none;
-    }
-
-    .path-glow {
-      fill: none;
-      stroke: rgba(22,119,255,.48);
-      stroke-width: 12;
-      filter: blur(9px);
-    }
-
-    .path-line {
-      fill: none;
-      stroke: url(#pathGradient);
-      stroke-width: 3;
-      stroke-linecap: round;
-    }
-
-    .map-node {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 36px 1fr;
-      gap: 10px;
-      align-items: center;
-      min-height: 48px;
-      padding: 0 14px;
-      border: 1px solid rgba(74,145,255,.38);
-      border-radius: 7px;
-      background: linear-gradient(135deg, rgba(8,28,52,.92), rgba(3,10,18,.9));
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.035) inset,
-        0 12px 30px rgba(0,0,0,.24);
-      backdrop-filter: blur(10px);
-    }
-
-    .map-node.one,
-    .map-node.two,
-    .map-node.three,
-    .map-node.four,
-    .map-node.five {
-      left: auto;
-      top: auto;
-      transform: none;
-    }
-
-    .node-icon {
-      position: relative;
-      width: 30px;
-      height: 30px;
-      display: grid;
-      place-items: center;
-      margin: 0;
-      border-radius: 999px;
-      border: 1px solid rgba(106,183,255,.7);
-      background:
-        radial-gradient(circle at 50% 50%, rgba(32,126,255,.28), rgba(22,119,255,.1) 68%);
-      color: var(--white);
-      box-shadow:
-        0 0 0 4px rgba(22,119,255,.08),
-        0 0 18px rgba(22,119,255,.32);
-    }
-
-    .node-icon::after {
-      display: none;
-    }
-
-    .node-icon svg {
-      width: 15px;
-      height: 15px;
-      stroke-width: 1.75;
-    }
-
-    .map-node strong {
-      padding: 0;
-      color: var(--white);
+    .step:last-child::before { display: none; }
+    .step-num {
+      position: absolute;
+      top: 0; left: 0;
+      width: 42px; height: 42px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+      background: rgba(22, 119, 255, .14);
+      border: 1px solid rgba(111, 168, 255, .5);
+      color: #9cc4ff;
       font-size: 13px;
-      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -.02em;
     }
+    .step h3 { color: #fff; font-size: 17.5px; margin-bottom: 8px; }
+    .step p { color: var(--dark-muted); font-size: 13.5px; line-height: 1.5; }
 
-    .layer-deck {
-      position: relative;
-      z-index: 2;
+    .layers {
       display: grid;
-      gap: 6px;
-      width: 100%;
-      margin: 0 auto;
-      padding-bottom: 18px;
-    }
-
-    .layer-deck::before,
-    .layer-deck::after {
-      display: none;
-    }
-
-    .layer-deck::after {
-      display: none;
-    }
-
-    .layer-card {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 74px 132px 1fr;
-      align-items: center;
-      min-height: 44px;
-      border: 1px solid rgba(65,150,255,.6);
-      border-radius: 13px;
-      background:
-        linear-gradient(90deg, rgba(15,82,180,.4), rgba(9,33,62,.52) 34%, rgba(7,14,24,.7));
-      box-shadow:
-        0 1px 0 rgba(255,255,255,.11) inset,
-        0 18px 52px rgba(0,0,0,.25),
-        0 0 30px rgba(22,119,255,.12);
-      backdrop-filter: blur(18px);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 64px;
+      background: var(--dark-line);
+      border: 1px solid var(--dark-line);
+      border-radius: var(--r);
       overflow: hidden;
     }
+    .layer { padding: 26px 26px 28px; background: var(--dark); }
+    .layer svg { width: 24px; height: 24px; color: #6fa8ff; stroke-width: 1.6; margin-bottom: 18px; }
+    .layer h4 { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #fff; margin-bottom: 9px; }
+    .layer p { color: var(--dark-muted); font-size: 13.5px; line-height: 1.5; }
 
-    .layer-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 4px;
-      background: var(--blue);
-      box-shadow: 0 0 24px rgba(22,119,255,1);
-    }
-
-    .layer-icon {
-      width: 44px;
-      height: 40px;
-      display: grid;
-      place-items: center;
-      margin-left: 16px;
-      color: var(--white);
-      clip-path: polygon(24% 0, 78% 0, 100% 50%, 78% 100%, 24% 100%, 0 50%);
-      background: linear-gradient(135deg, rgba(22,119,255,.84), rgba(22,119,255,.2));
-      box-shadow: 0 0 34px rgba(22,119,255,.46);
-    }
-
-    .layer-icon svg {
-      width: 19px;
-      height: 19px;
-      stroke-width: 1.65;
-    }
-
-    .layer-card strong {
-      color: var(--white);
-      font-size: 11px;
-      font-weight: 850;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
-    .layer-card span {
-      color: rgba(255,255,255,.78);
-      font-size: 13px;
-    }
-
-    .approach-metrics {
-      position: relative;
-      z-index: 3;
-      padding: 14px 0;
-      border-top: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.48);
-      box-shadow: 0 -24px 80px rgba(0,0,0,.38);
-    }
-
-    .approach-metric-row {
+    /* ---------- Outcomes ---------- */
+    .outcomes-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0;
+      border-top: 1px solid var(--line-strong);
     }
-
-    .approach-metric {
-      display: grid;
-      grid-template-columns: 40px 1fr;
-      gap: 14px;
-      align-items: center;
-      min-height: 58px;
-      padding: 0 22px;
-      border-right: 1px solid rgba(255,255,255,.13);
+    .outcome {
+      padding: 36px 28px 36px 0;
+      border-bottom: 1px solid var(--line-strong);
     }
-
-    .approach-metric:first-child { padding-left: 12px; }
-    .approach-metric:last-child { border-right: 0; padding-right: 12px; }
-
-    .metric-icon {
-      width: 36px;
-      height: 36px;
-      display: grid;
-      place-items: center;
-      border: 2px solid var(--blue);
-      border-radius: 50%;
-      color: var(--blue);
-      box-shadow: 0 0 28px rgba(22,119,255,.28);
-    }
-
-    .metric-icon svg {
-      width: 19px;
-      height: 19px;
-      stroke-width: 1.75;
-    }
-
-    .approach-metric small {
+    .outcome b {
       display: block;
-      margin-bottom: 4px;
-      color: rgba(255,255,255,.7);
-      font-size: 8.5px;
-      font-weight: 850;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .approach-metric strong {
-      display: block;
-      color: #6eea84;
-      font-size: 24px;
-      line-height: 1;
-      letter-spacing: -.04em;
-    }
-
-    .approach-metric span {
-      display: block;
-      margin-top: 6px;
-      color: rgba(255,255,255,.58);
-      font-size: 10px;
-      line-height: 1.35;
-    }
-
-    .outcomes {
-      background: var(--white);
-      padding: 70px 0;
-    }
-
-    .metric-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .metric {
-      min-height: 126px;
-      padding: 26px 38px 24px 0;
-      border-right: 1px solid var(--line);
-    }
-
-    .metric:last-child { border-right: 0; padding-left: 38px; }
-    .metric + .metric { padding-left: 38px; }
-
-    .metric strong {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--green);
-      font-size: clamp(34px, 4vw, 48px);
-      font-weight: 780;
+      margin-bottom: 12px;
+      font-size: clamp(38px, 4.4vw, 54px);
+      font-weight: 600;
       letter-spacing: -.05em;
       line-height: 1;
+      background: linear-gradient(135deg, var(--accent), #4f9bff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
+    .outcome span { color: var(--slate); font-size: 14.5px; line-height: 1.45; max-width: 200px; display: block; }
 
-    .metric span {
-      display: block;
-      max-width: 180px;
-      color: #162033;
-      font-size: 15px;
-      line-height: 1.35;
-    }
-
-    .serve {
-      position: relative;
-      color: var(--ink);
-      background:
-        linear-gradient(180deg, var(--white), #f7faff);
-      background-color: var(--white);
-    }
-
-    .serve .section-head { align-items: start; }
-
+    /* ---------- Who we serve ---------- */
+    .serve { background: var(--bg-soft); }
     .audience-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
     }
-
-    .audience-card {
-      min-height: 286px;
+    .aud {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 4px;
-      background: var(--navy-2);
-      transition: transform 190ms var(--ease), border-color 190ms var(--ease);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      transition: transform .22s var(--ease), border-color .22s var(--ease), box-shadow .22s var(--ease);
     }
+    .aud:hover { transform: translateY(-4px); border-color: rgba(22, 119, 255, .3); box-shadow: var(--shadow-md); }
+    .aud-img { aspect-ratio: 16 / 11; background-size: cover; background-position: center; filter: saturate(.9); }
+    .aud-body { padding: 22px 22px 24px; }
+    .aud-body svg { width: 24px; height: 24px; color: var(--accent); stroke-width: 1.65; margin-bottom: 16px; }
+    .aud-body h3 { font-size: 16.5px; margin-bottom: 8px; }
+    .aud-body p { color: var(--slate); font-size: 13.5px; line-height: 1.5; }
 
-    .audience-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(119,174,255,.48);
-    }
-
-    .audience-image {
-      min-height: 142px;
-      background:
-        linear-gradient(rgba(4,10,18,.15), rgba(4,10,18,.8)),
-        var(--image) center / cover;
-      filter: saturate(.82);
-    }
-
-    .audience-body {
-      padding: 22px;
-      background: linear-gradient(180deg, rgba(7,18,32,.94), rgba(3,8,14,.98));
-    }
-
-    .audience-body svg {
-      width: 28px;
-      height: 28px;
-      margin-bottom: 18px;
-      color: var(--white);
-      stroke-width: 1.55;
-    }
-
-    .audience-body h3 {
-      margin-bottom: 10px;
-      font-size: 17px;
-    }
-
-    .audience-body p {
-      margin: 0;
-      color: rgba(255,255,255,.66);
-      font-size: 12px;
-      line-height: 1.58;
-    }
-
-    .contact {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      padding: 76px 0 0;
-      color: var(--white);
-      background:
-        radial-gradient(circle at 84% 8%, rgba(22,119,255,.23), transparent 30%),
-        linear-gradient(135deg, #08172a, #02060b 72%);
-    }
-
-    .contact::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      opacity: .7;
-      background: url("assets/website-logo-bg.png") right center / cover no-repeat;
-      transform: scale(1.02);
-    }
-
-    .contact::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background:
-        linear-gradient(90deg, rgba(2,6,11,.9) 0%, rgba(2,6,11,.58) 42%, rgba(2,6,11,.18) 100%),
-        linear-gradient(180deg, rgba(2,6,11,.08), rgba(2,6,11,.88));
-    }
-
+    /* ---------- Contact ---------- */
     .contact-grid {
-      position: relative;
-      z-index: 1;
       display: grid;
-      grid-template-columns: .78fr 1.22fr;
-      gap: 72px;
+      grid-template-columns: .82fr 1.18fr;
+      gap: clamp(40px, 5vw, 76px);
       align-items: start;
-      padding-bottom: 66px;
     }
+    .contact-copy .h2 { margin-bottom: 20px; }
+    .contact-copy .lede { margin-bottom: 30px; }
+    .assurances { display: grid; gap: 16px; }
+    .assurance { display: flex; align-items: center; gap: 12px; color: var(--ink-soft); font-size: 14.5px; font-weight: 500; }
+    .assurance svg { width: 20px; height: 20px; color: var(--accent); stroke-width: 1.8; flex: 0 0 auto; }
 
-    .contact h2 {
-      max-width: 420px;
-      font-size: clamp(34px, 4vw, 54px);
+    .form-card {
+      padding: clamp(26px, 3vw, 38px);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-lg);
     }
-
-    .contact-form {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .field.full,
-    .contact-form .btn,
-    .form-status { grid-column: 1 / -1; }
-
-    input, select, textarea {
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 12.5px; font-weight: 600; color: var(--ink-soft); letter-spacing: -.01em; }
+    .field input, .field select, .field textarea {
       width: 100%;
-      border: 1px solid rgba(255,255,255,.22);
-      border-radius: 4px;
-      background: rgba(255,255,255,.045);
-      color: var(--white);
+      border: 1px solid var(--line-strong);
+      border-radius: 11px;
+      background: #fff;
+      transition: border-color .16s var(--ease), box-shadow .16s var(--ease);
+    }
+    .field input, .field select { height: 50px; padding: 0 15px; }
+    .field textarea { min-height: 120px; padding: 13px 15px; resize: vertical; }
+    .field input::placeholder, .field textarea::placeholder { color: var(--muted); }
+    .field input:focus, .field select:focus, .field textarea:focus {
       outline: none;
-      transition: border-color 160ms var(--ease), background 160ms var(--ease);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(22, 119, 255, .12);
     }
-
-    input, select {
-      height: 44px;
-      padding: 0 14px;
-    }
-
-    textarea {
-      min-height: 104px;
-      resize: vertical;
-      padding: 13px 14px;
-    }
-
-    select option { color: var(--ink); }
-    input::placeholder,
-    textarea::placeholder { color: rgba(255,255,255,.55); }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: rgba(86,160,255,.85);
-      background: rgba(255,255,255,.075);
-    }
-
-    .form-status {
-      display: none;
-      margin: 2px 0 0;
-      color: #92e8b8;
-      font-size: 13px;
-    }
-
+    .form-card .btn { width: 100%; margin-top: 4px; }
+    .form-status { display: none; grid-column: 1 / -1; margin: 4px 0 0; color: var(--green); font-size: 13.5px; font-weight: 500; }
     .form-status.visible { display: block; }
 
-    .footer {
-      position: relative;
-      z-index: 1;
-      padding: 26px 0 24px;
-      border-top: 1px solid rgba(255,255,255,.12);
-      color: var(--white);
-      background: rgba(0,0,0,.28);
-    }
-
+    /* ---------- Footer ---------- */
+    .footer { background: var(--dark); color: #fff; padding: 56px 0 30px; }
     .footer-top {
       display: flex;
-      justify-content: space-between;
-      gap: 30px;
       align-items: center;
-      padding-bottom: 24px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--dark-line);
     }
-
-    .footer-logo {
-      width: 252px;
-      max-height: 42px;
-      object-fit: contain;
-    }
-
-    .footer-logo-link {
-      display: inline-flex;
-      width: max-content;
-      max-width: 100%;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 26px;
-      color: rgba(255,255,255,.72);
-      font-size: 11px;
-      font-weight: 720;
-    }
-
+    .footer-top img { height: 26px; width: auto; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 26px; }
+    .footer-links a { color: var(--dark-muted); font-size: 14px; font-weight: 500; transition: color .16s var(--ease); }
+    .footer-links a:hover { color: #fff; }
     .footer-bottom {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      gap: 30px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,.08);
-      color: rgba(255,255,255,.45);
-      font-size: 10px;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 24px;
+      color: rgba(255, 255, 255, .4);
+      font-size: 12.5px;
     }
 
-    .reveal {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 700ms var(--ease), transform 700ms var(--ease);
-      transition-delay: calc(var(--i, 0) * 70ms);
+    /* ---------- Reveal ---------- */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s var(--ease), transform .7s var(--ease); transition-delay: calc(var(--i, 0) * 80ms); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1080px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-copy { max-width: 620px; }
+      .panel { max-width: 560px; }
+      .agency-top { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes revealUp {
-      from { opacity: .72; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @supports (animation-timeline: view()) {
-      .reveal {
-        animation: revealUp linear both;
-        animation-timeline: view();
-        animation-range: entry 0% cover 24%;
-      }
-    }
-
-    @media (max-width: 1180px) {
-      .nav-inner { height: 70px; }
-      .brand { width: 226px; }
-      .brand img { width: 210px; }
-      .nav-links { gap: 18px; }
-      .nav .btn { padding-inline: 16px; }
-      .hero-grid { grid-template-columns: 1fr; min-height: auto; gap: 36px; padding: 74px 0 70px; }
-      .dashboard { max-width: 760px; }
-      .trust-inner { grid-template-columns: repeat(4, 1fr); padding: 24px 0; }
-      .trust-label { grid-column: 1 / -1; }
-      .service-menu { grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); }
-      .service-card { border-bottom: 1px solid var(--line); }
-      .service-card:nth-child(3n) { border-right: 0; }
-      .service-card:nth-last-child(-n+3) { border-bottom: 0; }
-      .agency-layout {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
-      .agency-visual { margin-top: 0; }
-      .agency-visual img { min-height: 0; }
-      .approach-stage {
-        width: min(100% - 44px, 1120px);
-        min-height: 0;
-      }
-      .approach-logo-bg {
-        width: 600px;
-        height: 500px;
-        right: -90px;
-      }
-      .approach-head {
-        max-width: 600px;
-      }
-      .approach-head h2 {
-        font-size: clamp(42px, 5vw, 56px);
-      }
-      .approach-head .lede {
-        font-size: 14px;
-      }
-      .operating-map {
-        gap: 8px;
-        margin: 22px 0 18px;
-        padding: 10px;
-      }
-      .map-node {
-        grid-template-columns: 30px 1fr;
-        gap: 8px;
-        min-height: 44px;
-        padding: 0 10px;
-      }
-      .node-icon {
-        width: 28px;
-        height: 28px;
-      }
-      .node-icon svg {
-        width: 14px;
-        height: 14px;
-      }
-      .map-node strong { font-size: 12px; }
-      .layer-card {
-        grid-template-columns: 66px 118px 1fr;
-        min-height: 44px;
-      }
-      .layer-icon {
-        width: 40px;
-        height: 36px;
-      }
-      .layer-card span {
-        font-size: 12px;
-      }
-      .approach-metric {
-        grid-template-columns: 34px 1fr;
-        gap: 12px;
-        padding: 0 16px;
-      }
-      .metric-icon {
-        width: 32px;
-        height: 32px;
-      }
-      .approach-metric strong {
-        font-size: 22px;
-      }
-      .audience-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
-    @media (max-width: 860px) {
-      .container { width: min(100% - 36px, 640px); }
-      .nav-inner { height: 64px; }
-      .brand { width: auto; }
-      .brand img { width: 186px; }
-      .menu-btn { display: inline-flex; }
-      .nav .btn { display: none; }
+    @media (max-width: 900px) {
+      .wrap { width: min(640px, calc(100% - 40px)); }
       .nav-links {
         position: fixed;
-        top: 64px;
-        left: 0;
-        right: 0;
-        bottom: auto;
-        z-index: 120;
-        display: grid;
+        top: 74px; left: 0; right: 0;
+        flex-direction: column;
+        align-items: stretch;
         gap: 0;
         margin: 0;
-        padding: 10px 18px 22px;
-        background: #02060b;
-        border-bottom: 1px solid rgba(255,255,255,.12);
-        transform: translateY(-110%);
+        padding: 8px 20px 22px;
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-12px);
         opacity: 0;
         pointer-events: none;
-        transition: transform 220ms var(--ease), opacity 220ms var(--ease);
+        transition: transform .22s var(--ease), opacity .22s var(--ease);
       }
-      .nav-links a {
-        position: static;
-        padding: 16px 4px;
-        border-bottom: 1px solid rgba(255,255,255,.08);
-        font-size: 14px;
-      }
-      .nav-links a::after { display: none; }
-      body.menu-open .nav-links {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
-      }
-      main section[id] { scroll-margin-top: 64px; }
-      .hero-grid { padding: 46px 0 54px; }
-      h1 { font-size: clamp(42px, 12vw, 60px); }
-      h2 { font-size: clamp(30px, 9vw, 44px); }
-      .hero-copy p { font-size: 16px; }
-      .hero-actions { display: grid; grid-template-columns: 1fr; max-width: 320px; }
-      .signal-row { grid-template-columns: 1fr 1fr; gap: 16px 18px; margin-top: 34px; }
-      .dashboard {
-        min-height: auto;
-        padding: 14px;
-      }
-      .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .stat { min-height: 94px; padding: 13px; }
-      .stat strong { font-size: 27px; }
-      .overview-grid { grid-template-columns: 1fr; }
-      .mini-card { min-height: auto; }
-      .status-row { grid-template-columns: 76px 1fr 30px; gap: 10px; }
-      .trust-inner {
-        min-height: auto;
-        grid-template-columns: 1fr 1fr;
-        gap: 22px 18px;
-      }
-      .trust-label { grid-column: 1 / -1; }
-      .section { padding: 58px 0; }
-      .section-head {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        margin-bottom: 34px;
-      }
-      .section-head .lede { font-size: 15px; }
-      .service-menu {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-      .service-card,
-      .service-card:nth-child(3n),
-      .service-card:nth-last-child(-n+3) {
-        min-height: auto;
-        display: grid;
-        grid-template-columns: 46px 1fr 24px;
-        gap: 18px;
-        align-items: center;
-        padding: 22px 0;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-      .service-card:last-child { border-bottom: 0; }
-      .service-card svg { margin: 0; }
-      .service-card h3 { min-height: 0; margin: 0 0 6px; font-size: 18px; }
-      .service-card p { font-size: 12px; }
-      .arrow { margin: 0; justify-self: end; }
-      .agency-layout {
-        gap: 30px;
-      }
-      .agency-copy h2 {
-        max-width: 440px;
-        font-size: clamp(32px, 9vw, 44px);
-      }
-      .agency-copy .lede {
-        font-size: 15px;
-      }
-      .agency-proof { grid-template-columns: 1fr; }
-      .agency-proof-item { min-height: auto; }
-      .agency-services-grid { grid-template-columns: 1fr; gap: 12px; }
-      .agency-service { min-height: auto; }
-      .agency-caption { grid-template-columns: 1fr; }
-      .agency-caption-mark { display: none; }
-      .approach-stage {
-        width: min(100% - 36px, 640px);
-        min-height: auto;
-        padding: 50px 0 28px;
-      }
-      .approach-logo-bg {
-        inset: 0 -22vw auto auto;
-        width: min(700px, 135vw);
-        height: 780px;
-        opacity: .7;
-        background-image: url("assets/mobile-logo-bg.png");
-        background-position: center top;
-        background-size: cover;
-      }
-      .approach-head {
-        grid-template-columns: 1fr;
-        gap: 22px;
-        margin-bottom: 30px;
-      }
-      .approach-head h2 {
-        max-width: 390px;
-        font-size: clamp(34px, 10vw, 44px);
-      }
-      .approach-head .lede {
-        max-width: 360px;
-        margin: 0;
-        font-size: 15px;
-      }
-      .operating-map {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-        margin: 0 0 24px;
-        padding: 10px;
-      }
-      .operating-map::before,
-      .map-path { display: none; }
-      .map-node,
-      .map-node.one,
-      .map-node.two,
-      .map-node.three,
-      .map-node.four,
-      .map-node.five {
-        position: relative;
-        left: auto;
-        top: auto;
-        transform: none;
-        grid-template-columns: 34px 1fr;
-        min-height: 50px;
-        padding: 0 12px;
-      }
-      .map-node::after {
-        display: none;
-      }
-      .node-icon {
-        width: 30px;
-        height: 30px;
-        margin: 0;
-        box-shadow: 0 0 0 4px rgba(22,119,255,.08), 0 0 18px rgba(22,119,255,.32);
-      }
-      .node-icon svg {
-        width: 15px;
-        height: 15px;
-      }
-      .map-node strong {
-        font-size: 13px;
-      }
-      .layer-deck {
-        width: 100%;
-        gap: 12px;
-        margin: 0;
-        padding-bottom: 26px;
-      }
-      .layer-deck::before,
-      .layer-deck::after { display: none; }
-      .layer-card {
-        grid-template-columns: 56px 1fr;
-        gap: 12px;
-        min-height: 94px;
-        padding: 14px 16px 14px 0;
-      }
-      .layer-icon {
-        width: 42px;
-        height: 42px;
-        margin-left: 14px;
-        grid-row: span 2;
-      }
-      .layer-icon svg {
-        width: 19px;
-        height: 19px;
-      }
-      .layer-card strong {
-        align-self: end;
-        font-size: 11px;
-      }
-      .layer-card span {
-        align-self: start;
-        font-size: 13px;
-        line-height: 1.45;
-      }
-      .approach-metrics {
-        padding: 22px 0;
-      }
-      .approach-metric-row {
-        grid-template-columns: 1fr;
-      }
-      .approach-metric,
-      .approach-metric:first-child,
-      .approach-metric:last-child {
-        grid-template-columns: 42px 1fr;
-        min-height: 82px;
-        padding: 16px 0;
-        border-right: 0;
-        border-bottom: 1px solid rgba(255,255,255,.12);
-      }
-      .approach-metric:last-child { border-bottom: 0; }
-      .approach-metric strong {
-        font-size: 34px;
-      }
-      .metric-icon {
-        width: 40px;
-        height: 40px;
-      }
-      .metric-icon svg {
-        width: 22px;
-        height: 22px;
-      }
-      .metric-row { grid-template-columns: 1fr; }
-      .metric,
-      .metric + .metric,
-      .metric:last-child {
-        min-height: auto;
-        padding: 22px 0;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-      .metric:last-child { border-bottom: 0; }
-      .metric strong { font-size: 38px; }
-      .audience-grid { grid-template-columns: 1fr; gap: 18px; }
-      .audience-card { min-height: 246px; }
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        padding-bottom: 54px;
-      }
-      .contact::before {
-        background-image: url("assets/mobile-logo-bg.png");
-        background-position: center bottom;
-      }
-      .contact::after {
-        background:
-          linear-gradient(180deg, rgba(2,6,11,.76) 0%, rgba(2,6,11,.48) 46%, rgba(2,6,11,.9) 100%),
-          linear-gradient(90deg, rgba(2,6,11,.86), rgba(2,6,11,.18));
-      }
-      .contact-form { grid-template-columns: 1fr; }
-      .footer-top,
-      .footer-bottom {
-        display: grid;
-        gap: 18px;
-      }
-      .footer-links {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-      }
+      body.menu-open .nav-links { transform: none; opacity: 1; pointer-events: auto; }
+      .nav-links a { padding: 15px 6px; border-bottom: 1px solid var(--line); font-size: 16px; }
+      .nav-links a.active::after { display: none; }
+      .nav-cta { display: none; }
+      .menu-btn { display: inline-flex; }
+
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .agency-svcs { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: repeat(2, 1fr); gap: 28px 22px; }
+      .step::before { display: none; }
+      .layers { grid-template-columns: repeat(2, 1fr); }
+      .outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+      .outcome { padding-right: 20px; }
+      .audience-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-items { margin-left: 0; }
+      .panel-float { display: none; }
     }
 
-    @media (max-width: 430px) {
-      .container { width: min(100% - 28px, 390px); }
-      .brand img { width: 152px; }
-      .hero-grid { padding-top: 34px; }
-      h1 { font-size: clamp(37px, 12vw, 48px); }
-      .hero-actions { max-width: none; }
-      .signal-row { grid-template-columns: 1fr; }
-      .dashboard { margin-inline: -2px; }
-      .status-row { grid-template-columns: 70px 1fr 26px; font-size: 11px; }
-      .trust-inner { grid-template-columns: 1fr; }
-      .service-card {
-        grid-template-columns: 42px 1fr 18px;
-        gap: 14px;
-      }
-      .footer-logo { width: 210px; }
+    @media (max-width: 540px) {
+      .wrap { width: calc(100% - 36px); }
+      .hero h1 { font-size: clamp(38px, 11vw, 52px); }
+      .principles { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .kpi b { font-size: 24px; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+      .outcome { padding: 28px 0; }
+      .outcome span { max-width: none; }
+      .footer-top { justify-content: flex-start; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: .001ms !important;
-        scroll-behavior: auto !important;
-        transition-duration: .001ms !important;
-      }
+      * { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
       .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
-<body>
-  <header class="nav" aria-label="Primary navigation">
-    <div class="container nav-inner">
+<body id="top">
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
       <a class="brand brand-home" href="#top" aria-label="Advanced Agentic Systems home">
-        <img src="assets/logo-nav.png" alt="Advanced Agentic Systems" />
+        <img src="assets/logo-nav-dark.png" alt="Advanced Agentic Systems" />
       </a>
-      <nav class="nav-links" id="site-nav" aria-label="Site sections">
+      <nav class="nav-links" id="site-nav" aria-label="Primary">
         <a href="#services">Services</a>
         <a href="#agency">AI Agency</a>
         <a href="#approach">Approach</a>
@@ -1889,538 +728,415 @@
         <a href="#serve">Who We Serve</a>
         <a href="#contact">About</a>
       </nav>
-      <a class="btn btn-primary" href="#contact">Schedule a Strategy Review</a>
-      <button class="menu-btn" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav">
+      <a class="btn btn-primary btn-sm nav-cta" href="#contact">Schedule a Strategy Review</a>
+      <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
         <span class="menu-lines" aria-hidden="true"></span>
       </button>
     </div>
   </header>
 
-  <main id="top">
+  <main>
+    <!-- HERO -->
     <section class="hero">
-      <div class="grid-bg" aria-hidden="true"></div>
-      <div class="container hero-grid">
+      <div class="wrap hero-inner">
         <div class="hero-copy reveal">
-          <h1>Operational Clarity for Critical Work</h1>
-          <p>Modernize how work moves across teams, systems, decisions, and growth channels.</p>
+          <span class="kicker">Operational Modernization · AI Growth</span>
+          <h1 class="display">Operational clarity for critical work.</h1>
+          <p class="lede">We modernize how work moves across teams, systems, decisions, and growth channels — so the right things happen on time, with full visibility.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Schedule a Strategy Review</a>
-            <a class="btn btn-ghost" href="#approach">See Our Approach</a>
+            <a class="btn btn-primary" href="#contact">Schedule a Strategy Review
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#approach">See our approach</a>
           </div>
-          <div class="signal-row" aria-label="AAS operating principles">
-            <div class="signal">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z"/><path d="M9 12l2 2 4-5"/></svg>
-              <span>Workflow-first</span>
-            </div>
-            <div class="signal">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 7h6v6H4z"/><path d="M14 11h6v6h-6z"/><path d="M10 10h4"/></svg>
-              <span>Tool-agnostic</span>
-            </div>
-            <div class="signal">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/></svg>
-              <span>Executive visibility</span>
-            </div>
-            <div class="signal">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19h16"/><path d="M6 17V9"/><path d="M12 17V5"/><path d="M18 17v-6"/><path d="M9 9h6"/></svg>
-              <span>Measurable improvement</span>
-            </div>
+          <div class="principles">
+            <span class="principle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z"/><path d="M9 12l2 2 4-5"/></svg>Workflow-first</span>
+            <span class="principle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 7h6v6H4z"/><path d="M14 11h6v6h-6z"/><path d="M10 10h4"/></svg>Tool-agnostic</span>
+            <span class="principle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/></svg>Executive visibility</span>
+            <span class="principle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19h16"/><path d="M6 17V9"/><path d="M12 17V5"/><path d="M18 17v-6"/></svg>Measurable improvement</span>
           </div>
         </div>
 
-        <aside class="dashboard reveal" style="--i:1" aria-label="Operational overview dashboard">
+        <div class="panel reveal" style="--i:1" aria-label="Operational overview">
           <div class="panel-head">
-            <div class="panel-title">Operational Overview</div>
-            <div class="live">Live view</div>
+            <strong>Operational Overview</strong>
+            <span class="live">Live</span>
           </div>
-          <div class="stat-grid">
-            <div class="stat"><span>Active Work</span><strong>90 <em class="up">+12%</em></strong></div>
-            <div class="stat"><span>In Progress</span><strong>48</strong></div>
-            <div class="stat"><span>At Risk</span><strong class="risk">12 <em class="up">-3</em></strong></div>
-            <div class="stat"><span>Completed</span><strong>72 <em class="up">+6%</em></strong></div>
+          <div class="kpis">
+            <div class="kpi"><small>On-time delivery</small><b>94%</b> <i class="pos">▲ 6%</i></div>
+            <div class="kpi"><small>Active work</small><b>90</b> <i class="pos">▲ 12</i></div>
+            <div class="kpi"><small>At risk</small><b>12</b> <i class="neg">▼ 3</i></div>
           </div>
-          <div class="overview-grid">
-            <div class="mini-card">
-              <p class="micro-label">Work By Status</p>
-              <div class="status-bars">
-                <div class="status-row"><span>Intake</span><div class="bar"><span style="--w:74%"></span></div><strong>18</strong></div>
-                <div class="status-row"><span>In Progress</span><div class="bar"><span style="--w:88%"></span></div><strong>48</strong></div>
-                <div class="status-row"><span>Waiting</span><div class="bar"><span style="--w:42%"></span></div><strong>12</strong></div>
-                <div class="status-row"><span>Review</span><div class="bar"><span style="--w:32%"></span></div><strong>12</strong></div>
-                <div class="status-row"><span>Complete</span><div class="bar"><span style="--w:84%"></span></div><strong>72</strong></div>
-              </div>
-            </div>
-            <div class="mini-card">
-              <p class="micro-label">Risks</p>
-              <div class="risk-row"><span>High</span><strong>2</strong></div>
-              <div class="risk-row"><span>Medium</span><strong>6</strong></div>
-              <div class="risk-row"><span>Low</span><strong>4</strong></div>
-              <div class="risk-row"><span>Total</span><strong>12</strong></div>
-            </div>
+          <div class="chart">
+            <div class="chart-top"><span>THROUGHPUT · LAST 8 WEEKS</span><em>▲ 28%</em></div>
+            <svg viewBox="0 0 320 88" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#1677ff" stop-opacity=".22"/>
+                  <stop offset="100%" stop-color="#1677ff" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,70 L46,66 L92,68 L137,50 L183,46 L229,52 L274,30 L320,18 L320,88 L0,88 Z" fill="url(#fill)"/>
+              <path d="M0,70 L46,66 L92,68 L137,50 L183,46 L229,52 L274,30 L320,18" fill="none" stroke="#1677ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="320" cy="18" r="4" fill="#1677ff"/>
+              <circle cx="320" cy="18" r="8" fill="#1677ff" fill-opacity=".16"/>
+            </svg>
           </div>
-        </aside>
+          <div class="panel-float" aria-hidden="true">
+            <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12l4 4L19 6"/></svg></span>
+            <div><b>Cycle time −34%</b><small>vs. last quarter</small></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="trust-strip" aria-label="Teams served by AAS">
-      <div class="container trust-inner">
+    <!-- TRUST -->
+    <section class="trust" aria-label="Teams we serve">
+      <div class="wrap trust-inner">
         <div class="trust-label">Trusted by teams that move critical work</div>
-        <div class="trust-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21h18"/><path d="M5 21V9l7-4 7 4v12"/><path d="M9 21v-6h6v6"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
-          <strong>Federal<br />Contractors</strong>
-        </div>
-        <div class="trust-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 21V5h10v16"/><path d="M14 10h6v11"/><path d="M8 9h2M8 13h2M8 17h2M17 14h.01M17 17h.01"/></svg>
-          <strong>Enterprise<br />Operations</strong>
-        </div>
-        <div class="trust-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 21v-5a4 4 0 0 1 8 0v5"/><path d="M12 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M4 21v-3a3 3 0 0 1 4-2.83"/><path d="M20 21v-3a3 3 0 0 0-4-2.83"/></svg>
-          <strong>PMO<br />Teams</strong>
-        </div>
-        <div class="trust-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
-          <strong>Marketing &amp;<br />Brand Teams</strong>
+        <div class="trust-items">
+          <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21h18"/><path d="M5 21V9l7-4 7 4v12"/><path d="M9 21v-6h6v6"/></svg>Federal Contractors</span>
+          <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 21V5h10v16"/><path d="M14 10h6v11"/><path d="M8 9h2M8 13h2M8 17h2"/></svg>Enterprise Operations</span>
+          <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 21v-5a4 4 0 0 1 8 0v5"/><path d="M12 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>PMO Teams</span>
+          <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 13h6"/></svg>Marketing &amp; Brand Teams</span>
         </div>
       </div>
     </section>
 
+    <!-- SERVICES -->
     <section class="section services" id="services">
-      <div class="container section-head">
-        <div class="reveal">
-          <p class="kicker">Our Services</p>
-          <h2>Built for how work gets done and growth gets delivered.</h2>
-          <div class="accent-line"></div>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="kicker">Services</span>
+          <h2 class="h2">Built for how work gets done — and how growth gets delivered.</h2>
+          <p class="lede">From assessment to automation, AAS builds systems that reduce friction, improve visibility, strengthen brands, and drive measurable results.</p>
         </div>
-        <p class="lede reveal" style="--i:1">From assessment to automation, AAS builds systems that reduce friction, improve visibility, strengthen brands, and drive results.</p>
-      </div>
-      <div class="container">
-        <div class="service-menu">
-          <a class="service-card reveal" style="--i:0" href="services/workflow-intelligence-audit.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/><path d="M8 11l2 2 4-5"/></svg>
-            <div><h3>Audit</h3><p>Find friction and prioritize what to fix.</p></div>
-            <span class="arrow">&rarr;</span>
+        <div class="services-grid">
+          <a class="svc reveal" href="services/workflow-intelligence-audit.html">
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/><path d="M8 11l2 2 4-5"/></svg></span>
+            <h3 class="h3">Workflow Audit</h3>
+            <p>Find friction across your operations and prioritize exactly what to fix first.</p>
+            <span class="textlink">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a class="service-card reveal" style="--i:1" href="services/operational-visibility-sprint.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/><path d="M8 8h3v3H8zM13 8h3v3h-3zM8 13h3v3H8zM13 13h3v3h-3z"/></svg>
-            <div><h3>Visibility</h3><p>Connect work and surface operational truth.</p></div>
-            <span class="arrow">&rarr;</span>
+          <a class="svc reveal" style="--i:1" href="services/operational-visibility-sprint.html">
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/><path d="M8 8h3v3H8zM13 8h3v3h-3zM8 13h3v3H8zM13 13h3v3h-3z"/></svg></span>
+            <h3 class="h3">Operational Visibility</h3>
+            <p>Connect work across systems and surface a single source of operational truth.</p>
+            <span class="textlink">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a class="service-card reveal" style="--i:2" href="services/pmo-modernization.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21h18"/><path d="M5 21V10h14v11"/><path d="M3 10l9-6 9 6"/><path d="M9 21v-7M15 21v-7"/></svg>
-            <div><h3>PMO</h3><p>Strengthen governance, reporting, and execution.</p></div>
-            <span class="arrow">&rarr;</span>
+          <a class="svc reveal" style="--i:2" href="services/pmo-modernization.html">
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21h18"/><path d="M5 21V10h14v11"/><path d="M3 10l9-6 9 6"/><path d="M9 21v-7M15 21v-7"/></svg></span>
+            <h3 class="h3">PMO Modernization</h3>
+            <p>Strengthen governance, reporting, and execution without slowing teams down.</p>
+            <span class="textlink">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a class="service-card reveal" style="--i:3" href="services/ai-marketing-branding-agency.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/><path d="M16 5h4v4"/></svg>
-            <div><h3>AI Agency</h3><p>Build brand, marketing, and content systems powered by AI.</p></div>
-            <span class="arrow">&rarr;</span>
+          <a class="svc reveal" href="services/ai-marketing-branding-agency.html">
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/><path d="M16 5h4v4"/></svg></span>
+            <h3 class="h3">AI Agency</h3>
+            <p>Build brand, marketing, and content systems powered by AI — with human taste.</p>
+            <span class="textlink">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a class="service-card reveal" style="--i:4" href="services/workflow-automation-sprint.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 7h5v5H5zM14 3h5v5h-5zM14 16h5v5h-5z"/><path d="M10 9h4M16.5 8v8M10 12l4 4"/></svg>
-            <div><h3>Automation</h3><p>Automate intake, routing, approvals, and alerts.</p></div>
-            <span class="arrow">&rarr;</span>
+          <a class="svc reveal" style="--i:1" href="services/workflow-automation-sprint.html">
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 7h5v5H5zM14 3h5v5h-5zM14 16h5v5h-5z"/><path d="M10 9h4M16.5 8v8M10 12l4 4"/></svg></span>
+            <h3 class="h3">Workflow Automation</h3>
+            <p>Automate intake, routing, approvals, and alerts so teams move faster with control.</p>
+            <span class="textlink">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a class="service-card reveal" style="--i:5" href="services/managed-modernization-support.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 12a8 8 0 0 1-13.66 5.66"/><path d="M4 12A8 8 0 0 1 17.66 6.34"/><path d="M4 18v-5h5"/><path d="M20 6v5h-5"/></svg>
-            <div><h3>Managed Support</h3><p>Optimize, support, and continuously improve.</p></div>
-            <span class="arrow">&rarr;</span>
+          <a class="svc reveal" style="--i:2" href="services/managed-modernization-support.html">
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 12a8 8 0 0 1-13.66 5.66"/><path d="M4 12A8 8 0 0 1 17.66 6.34"/><path d="M4 18v-5h5"/><path d="M20 6v5h-5"/></svg></span>
+            <h3 class="h3">Managed Support</h3>
+            <p>Optimize, support, and continuously improve the systems we put in place.</p>
+            <span class="textlink">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
           </a>
         </div>
       </div>
     </section>
 
+    <!-- AGENCY -->
     <section class="section agency" id="agency">
-      <div class="container agency-layout">
-        <div class="agency-copy reveal">
-          <p class="kicker">Agency Services</p>
-          <h2>Design, marketing, and brand systems with AI built in</h2>
-          <p class="lede">AAS helps clients look sharper, communicate with more confidence, and move faster across the channels that shape first impressions.</p>
-          <div class="agency-proof" aria-label="Agency service strengths">
-            <div class="agency-proof-item"><strong>01</strong><span>Strategy before production</span></div>
-            <div class="agency-proof-item"><strong>02</strong><span>Design systems clients can reuse</span></div>
-            <div class="agency-proof-item"><strong>03</strong><span>AI workflows with human taste</span></div>
-          </div>
-          <a class="btn btn-primary" href="services/ai-marketing-branding-agency.html">Explore Agency Services</a>
-        </div>
-        <div class="agency-visual reveal" style="--i:1" aria-label="AI marketing and branding systems visual">
-          <img src="assets/agency-creative-board.png" alt="Bright brand, website, content, automation, and analytics creative board" />
-          <div class="agency-caption">
-            <div>
-              <strong>Creative direction that still works like a system.</strong>
-              <span>Brand boards, web experiences, campaign assets, automation flows, and performance loops designed as one operating model.</span>
+      <div class="wrap">
+        <div class="agency-top">
+          <div class="reveal">
+            <span class="kicker">AI Agency</span>
+            <h2 class="h2">Design, marketing, and brand systems with AI built in.</h2>
+            <p class="lede">We help clients look sharper, communicate with more confidence, and move faster across the channels that shape first impressions.</p>
+            <div class="proof">
+              <div class="proof-row"><b>01</b><span>Strategy before production</span></div>
+              <div class="proof-row"><b>02</b><span>Design systems clients can reuse</span></div>
+              <div class="proof-row"><b>03</b><span>AI workflows with human taste</span></div>
             </div>
-            <div class="agency-caption-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/></svg>
+            <a class="btn btn-primary" href="services/ai-marketing-branding-agency.html">Explore Agency Services
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+          <div class="figure reveal" style="--i:1">
+            <img src="assets/agency-creative-board.png" alt="Brand, website, content, automation, and analytics creative board" />
+            <div class="figure-cap">
+              <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/></svg></span>
+              <p><b>Creative direction that still works like a system.</b> Brand, web, campaigns, automation, and performance — designed as one operating model.</p>
             </div>
           </div>
         </div>
-      </div>
-      <div class="container agency-services-grid" aria-label="Agency services">
-        <article class="agency-service reveal" style="--i:0">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 20V4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h5"/><path d="M8 16h7"/></svg>
-          <h3>Brand Identity and Positioning</h3>
-          <p>Messaging, visual direction, offer framing, voice, and reusable brand rules that make the business feel clear and credible.</p>
-        </article>
-        <article class="agency-service reveal" style="--i:1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v14H4z"/><path d="M8 9h8"/><path d="M8 13h5"/><path d="M10 19v2h4v-2"/></svg>
-          <h3>Websites and Landing Pages</h3>
-          <p>High-trust web pages, service pages, campaign pages, and conversion-focused copy that look polished and explain the offer fast.</p>
-        </article>
-        <article class="agency-service reveal" style="--i:2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 4h12v16H6z"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>
-          <h3>Content and Campaign Systems</h3>
-          <p>Content calendars, social systems, emails, campaign briefs, and creative templates that reduce one-off marketing work.</p>
-        </article>
-        <article class="agency-service reveal" style="--i:3">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 7h5v5H5zM14 3h5v5h-5zM14 16h5v5h-5z"/><path d="M10 9h4M16.5 8v8M10 12l4 4"/></svg>
-          <h3>AI Workflow Automation</h3>
-          <p>Prompt libraries, review flows, customer communication templates, and reporting loops that help teams move faster with control.</p>
-        </article>
+
+        <div class="agency-svcs">
+          <article class="agency-svc reveal">
+            <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 20V4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h5"/><path d="M8 16h7"/></svg>
+            <h3 class="h3">Brand Identity &amp; Positioning</h3>
+            <p>Messaging, visual direction, voice, and reusable brand rules that make the business feel clear and credible.</p>
+          </article>
+          <article class="agency-svc reveal" style="--i:1">
+            <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v14H4z"/><path d="M8 9h8"/><path d="M8 13h5"/><path d="M10 19v2h4v-2"/></svg>
+            <h3 class="h3">Websites &amp; Landing Pages</h3>
+            <p>High-trust web and campaign pages with conversion-focused copy that explain the offer fast.</p>
+          </article>
+          <article class="agency-svc reveal">
+            <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 4h12v16H6z"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>
+            <h3 class="h3">Content &amp; Campaign Systems</h3>
+            <p>Calendars, social systems, emails, and creative templates that reduce one-off marketing work.</p>
+          </article>
+          <article class="agency-svc reveal" style="--i:1">
+            <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 7h5v5H5zM14 3h5v5h-5zM14 16h5v5h-5z"/><path d="M10 9h4M16.5 8v8M10 12l4 4"/></svg>
+            <h3 class="h3">AI Workflow Automation</h3>
+            <p>Prompt libraries, review flows, and reporting loops that help teams move faster with control.</p>
+          </article>
+        </div>
       </div>
     </section>
 
+    <!-- APPROACH (dark anchor) -->
     <span id="process" aria-hidden="true"></span>
-    <section class="approach dark" id="approach">
-      <div class="grid-bg" aria-hidden="true"></div>
-      <div class="approach-stage">
-        <div class="approach-logo-bg" aria-hidden="true"></div>
-        <div class="approach-head">
-          <div>
-            <p class="kicker">Our Approach</p>
-            <h2>A connected operating model</h2>
-          </div>
+    <section class="section approach" id="approach">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="kicker">Our Approach</span>
+          <h2 class="h2">A connected operating model.</h2>
           <p class="lede">We standardize how work flows, who owns what, and how decisions get made across operational and marketing lifecycles.</p>
         </div>
 
-        <div class="operating-map" aria-label="Connected operating model flow">
-          <svg class="map-path" viewBox="0 0 1100 220" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#1677ff" stop-opacity=".1" />
-                <stop offset="18%" stop-color="#1677ff" />
-                <stop offset="55%" stop-color="#62b0ff" />
-                <stop offset="100%" stop-color="#1677ff" />
-              </linearGradient>
-            </defs>
-            <path class="path-glow" d="M0 170 C120 170 140 132 236 130 S350 92 440 90 S560 70 650 66 S780 44 870 42 S1002 28 1100 20" />
-            <path class="path-line" d="M0 170 C120 170 140 132 236 130 S350 92 440 90 S560 70 650 66 S780 44 870 42 S1002 28 1100 20" />
-          </svg>
-
-          <div class="map-node one">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
-            </div>
-            <strong>Discover</strong>
-          </div>
-          <div class="map-node two">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
-            </div>
-            <strong>Design</strong>
-          </div>
-          <div class="map-node three">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z"/><path d="M9 12l2 2 4-5"/></svg>
-            </div>
-            <strong>Approve</strong>
-          </div>
-          <div class="map-node four">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <strong>Automate</strong>
-          </div>
-          <div class="map-node five">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 19V9"/><path d="M10 19V5"/><path d="M15 19v-8"/><path d="M20 19V7"/></svg>
-            </div>
-            <strong>Measure</strong>
-          </div>
+        <div class="flow">
+          <div class="step reveal"><span class="step-num">01</span><h3 class="h3">Discover</h3><p>Map how work really moves and where it breaks down.</p></div>
+          <div class="step reveal" style="--i:1"><span class="step-num">02</span><h3 class="h3">Design</h3><p>Define the workflow, owners, and decision paths.</p></div>
+          <div class="step reveal" style="--i:2"><span class="step-num">03</span><h3 class="h3">Approve</h3><p>Align stakeholders with clear, fast sign-off.</p></div>
+          <div class="step reveal" style="--i:3"><span class="step-num">04</span><h3 class="h3">Automate</h3><p>Remove manual steps — intake, routing, alerts.</p></div>
+          <div class="step reveal" style="--i:4"><span class="step-num">05</span><h3 class="h3">Measure</h3><p>Track throughput, risk, and outcomes live.</p></div>
         </div>
 
-        <div class="layer-deck">
-          <div class="layer-card">
-            <div class="layer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 21v-5a4 4 0 0 1 8 0v5"/><path d="M12 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg></div>
-            <strong>People</strong>
-            <span>Clear roles, accountability, and collaboration.</span>
+        <div class="layers">
+          <div class="layer reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 21v-5a4 4 0 0 1 8 0v5"/><path d="M12 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M4 21v-3a3 3 0 0 1 4-2.83"/><path d="M20 21v-3a3 3 0 0 0-4-2.83"/></svg>
+            <h4>People</h4><p>Clear roles, accountability, and collaboration.</p>
           </div>
-          <div class="layer-card">
-            <div class="layer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 7h5v5H5zM14 3h5v5h-5zM14 16h5v5h-5z"/><path d="M10 9h4M16.5 8v8M10 12l4 4"/></svg></div>
-            <strong>Process</strong>
-            <span>Standardized workflows and decision paths.</span>
+          <div class="layer reveal" style="--i:1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 7h5v5H5zM14 3h5v5h-5zM14 16h5v5h-5z"/><path d="M10 9h4M16.5 8v8M10 12l4 4"/></svg>
+            <h4>Process</h4><p>Standardized workflows and decision paths.</p>
           </div>
-          <div class="layer-card">
-            <div class="layer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/><path d="M8 8h3v3H8zM13 8h3v3h-3zM8 13h3v3H8zM13 13h3v3h-3z"/></svg></div>
-            <strong>Systems</strong>
-            <span>Integrated tools and data connections.</span>
+          <div class="layer reveal" style="--i:2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/><path d="M8 8h3v3H8zM13 8h3v3h-3zM8 13h3v3H8zM13 13h3v3h-3z"/></svg>
+            <h4>Systems</h4><p>Integrated tools and connected data.</p>
           </div>
-          <div class="layer-card">
-            <div class="layer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/></svg></div>
-            <strong>Visibility</strong>
-            <span>Dashboards, alerts, and operational insights.</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="approach-metrics" id="outcomes">
-        <div class="container approach-metric-row">
-          <div class="approach-metric">
-            <div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></div>
-            <div><small>Less Manual Work</small><strong>20-40%</strong><span>Reduction in manual reporting</span></div>
-          </div>
-          <div class="approach-metric">
-            <div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12l4 4L19 6"/></svg></div>
-            <div><small>Faster Decisions</small><strong>2-4x</strong><span>Faster approval cycles</span></div>
-          </div>
-          <div class="approach-metric">
-            <div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 18h16"/><path d="M5 15l5-5 4 3 5-8"/><path d="M15 5h4v4"/></svg></div>
-            <div><small>On-Time Delivery</small><strong>30%+</strong><span>Improvement in on-time delivery</span></div>
-          </div>
-          <div class="approach-metric">
-            <div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-            <div><small>Efficiency Unlocked</small><strong>$250K+</strong><span>Annual value unlocked in efficiency</span></div>
+          <div class="layer reveal" style="--i:3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/></svg>
+            <h4>Visibility</h4><p>Dashboards, alerts, and operational insight.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section serve light-band" id="serve">
-      <div class="grid-bg" aria-hidden="true"></div>
-      <div class="container">
-        <div class="section-head">
-          <div class="reveal">
-            <p class="kicker">Who We Serve</p>
-            <h2>Built for teams with big responsibility.</h2>
-          </div>
-          <p class="lede reveal" style="--i:1">AAS partners with organizations where complexity, delivery risk, and operational clarity matter.</p>
+    <!-- OUTCOMES -->
+    <section class="section outcomes" id="outcomes">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="kicker">Outcomes</span>
+          <h2 class="h2">Results that show up where it counts.</h2>
+          <p class="lede">The systems we build are measured by the work they unlock — less manual effort, faster decisions, and reliable delivery.</p>
+        </div>
+        <div class="outcomes-grid">
+          <div class="outcome reveal"><b>20–40%</b><span>Reduction in manual reporting work</span></div>
+          <div class="outcome reveal" style="--i:1"><b>2–4×</b><span>Faster approval cycles</span></div>
+          <div class="outcome reveal" style="--i:2"><b>30%+</b><span>Improvement in on-time delivery</span></div>
+          <div class="outcome reveal" style="--i:3"><b>$250K+</b><span>Annual value unlocked in efficiency</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO WE SERVE -->
+    <section class="section serve" id="serve">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="kicker">Who We Serve</span>
+          <h2 class="h2">Built for teams with big responsibility.</h2>
+          <p class="lede">AAS partners with organizations where complexity, delivery risk, and operational clarity matter most.</p>
         </div>
         <div class="audience-grid">
-          <article class="audience-card reveal" style="--i:0">
-            <div class="audience-image" style="--image: url('https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=720&q=80')"></div>
-            <div class="audience-body">
+          <article class="aud reveal">
+            <div class="aud-img" style="background-image:url('https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=720&q=80')"></div>
+            <div class="aud-body">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21h18"/><path d="M5 21V10h14v11"/><path d="M3 10l9-6 9 6"/><path d="M9 21v-7M15 21v-7"/></svg>
-              <h3>Federal Contractors</h3>
+              <h3 class="h3">Federal Contractors</h3>
               <p>Mission delivery, compliance, and program execution.</p>
             </div>
           </article>
-          <article class="audience-card reveal" style="--i:1">
-            <div class="audience-image" style="--image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=720&q=80')"></div>
-            <div class="audience-body">
+          <article class="aud reveal" style="--i:1">
+            <div class="aud-img" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=720&q=80')"></div>
+            <div class="aud-body">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 21V5h10v16"/><path d="M14 10h6v11"/><path d="M8 9h2M8 13h2M8 17h2"/></svg>
-              <h3>Enterprise Operations</h3>
+              <h3 class="h3">Enterprise Operations</h3>
               <p>Cross-functional work, process, and performance.</p>
             </div>
           </article>
-          <article class="audience-card reveal" style="--i:2">
-            <div class="audience-image" style="--image: url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=720&q=80')"></div>
-            <div class="audience-body">
+          <article class="aud reveal" style="--i:2">
+            <div class="aud-img" style="background-image:url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=720&q=80')"></div>
+            <div class="aud-body">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 21v-5a4 4 0 0 1 8 0v5"/><path d="M12 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M4 21v-3a3 3 0 0 1 4-2.83"/><path d="M20 21v-3a3 3 0 0 0-4-2.83"/></svg>
-              <h3>PMO Teams</h3>
+              <h3 class="h3">PMO Teams</h3>
               <p>Governance, reporting, and portfolio oversight.</p>
             </div>
           </article>
-          <article class="audience-card reveal" style="--i:3">
-            <div class="audience-image" style="--image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=720&q=80')"></div>
-            <div class="audience-body">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
-              <h3>Marketing and Brand Teams</h3>
-              <p>Brand strategy, content systems, campaigns, and AI-assisted growth workflows.</p>
+          <article class="aud reveal" style="--i:3">
+            <div class="aud-img" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=720&q=80')"></div>
+            <div class="aud-body">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 13h6"/></svg>
+              <h3 class="h3">Marketing &amp; Brand Teams</h3>
+              <p>Brand strategy, content systems, and AI-assisted growth.</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="contact dark" id="contact">
-      <div class="grid-bg" aria-hidden="true"></div>
-      <div class="container contact-grid">
-        <div class="reveal">
-          <p class="kicker">Ready To Modernize</p>
-          <h2>Let's move your work forward.</h2>
-          <p>Tell us about the challenge. We will show you what is possible.</p>
-        </div>
-        <form class="contact-form reveal" id="contact-form" style="--i:1">
-          <div class="field"><input id="name" name="name" autocomplete="name" placeholder="Name" required /></div>
-          <div class="field"><input id="email" name="email" type="email" autocomplete="email" placeholder="Email" required /></div>
-          <div class="field"><input id="company" name="company" autocomplete="organization" placeholder="Company" required /></div>
-          <div class="field">
-            <select id="role" name="role" required>
-              <option value="">Your role</option>
-              <option>Executive leader</option>
-              <option>Operations leader</option>
-              <option>PMO leader</option>
-              <option>Marketing or brand leader</option>
-              <option>Program manager</option>
-            </select>
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <div class="wrap contact-grid">
+        <div class="contact-copy reveal">
+          <span class="kicker">Start the Conversation</span>
+          <h2 class="h2">Let's move your work forward.</h2>
+          <p class="lede">Tell us about the challenge. We'll show you what's possible — and where the fastest wins are.</p>
+          <div class="assurances">
+            <div class="assurance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12l4 4L19 6"/></svg>A focused strategy review, not a sales pitch</div>
+            <div class="assurance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12l4 4L19 6"/></svg>Clear next steps within one week</div>
+            <div class="assurance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12l4 4L19 6"/></svg>Tool-agnostic — we work with your stack</div>
           </div>
-          <div class="field full"><textarea id="challenge" name="challenge" placeholder="What operational or growth challenge should we solve?" required></textarea></div>
-          <button class="btn btn-primary" type="submit">Schedule a Strategy Review</button>
-          <p class="form-status" role="status" aria-live="polite">Thanks. Your strategy review request is ready to send from the next connected form step.</p>
+        </div>
+        <form class="form-card reveal" id="contact-form" style="--i:1">
+          <div class="form-grid">
+            <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" placeholder="Jane Doe" required /></div>
+            <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="jane@company.com" required /></div>
+            <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization" placeholder="Company name" required /></div>
+            <div class="field">
+              <label for="role">Your role</label>
+              <select id="role" name="role" required>
+                <option value="">Select a role</option>
+                <option>Executive leader</option>
+                <option>Operations leader</option>
+                <option>PMO leader</option>
+                <option>Marketing or brand leader</option>
+                <option>Program manager</option>
+              </select>
+            </div>
+            <div class="field full"><label for="challenge">What should we solve?</label><textarea id="challenge" name="challenge" placeholder="Describe the operational or growth challenge you're facing." required></textarea></div>
+            <button class="btn btn-primary" type="submit">Schedule a Strategy Review
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            </button>
+            <p class="form-status" role="status" aria-live="polite">Thanks — your strategy review request is ready to send from the next connected step.</p>
+          </div>
         </form>
       </div>
-
-      <footer class="footer">
-        <div class="container">
-          <div class="footer-top">
-            <a class="footer-logo-link brand-home" href="#top" aria-label="Advanced Agentic Systems home">
-              <img class="footer-logo" src="assets/logo-nav.png" alt="Advanced Agentic Systems" />
-            </a>
-            <nav class="footer-links" aria-label="Footer links">
-              <a href="#services">Services</a>
-              <a href="#agency">AI Agency</a>
-              <a href="#approach">Approach</a>
-              <a href="#outcomes">Outcomes</a>
-              <a href="#serve">Who We Serve</a>
-              <a href="#contact">About</a>
-            </nav>
-            <a class="btn btn-primary" href="#contact">Schedule a Strategy Review</a>
-          </div>
-          <div class="footer-bottom">
-            <span>&copy; 2026 Advanced Agentic Systems. All rights reserved.</span>
-            <span>Operational Modernization. AI Growth Systems. Executive Visibility.</span>
-          </div>
-        </div>
-      </footer>
     </section>
   </main>
 
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <a class="brand-home" href="#top" aria-label="Advanced Agentic Systems home">
+          <img src="assets/logo-nav.png" alt="Advanced Agentic Systems" />
+        </a>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="#services">Services</a>
+          <a href="#agency">AI Agency</a>
+          <a href="#approach">Approach</a>
+          <a href="#outcomes">Outcomes</a>
+          <a href="#serve">Who We Serve</a>
+          <a href="#contact">About</a>
+        </nav>
+        <a class="btn btn-primary btn-sm" href="#contact">Schedule a Strategy Review</a>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Advanced Agentic Systems. All rights reserved.</span>
+        <span>Operational Modernization · AI Growth Systems · Executive Visibility</span>
+      </div>
+    </div>
+  </footer>
+
   <script>
     const body = document.body;
+    const nav = document.getElementById("nav");
     const menuButton = document.querySelector(".menu-btn");
     const navLinks = Array.from(document.querySelectorAll(".nav-links a, .footer-links a"));
     const homeLinks = Array.from(document.querySelectorAll(".brand-home"));
     const sections = Array.from(document.querySelectorAll("#services, #agency, #approach, #outcomes, #serve, #contact"));
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
-    const forceTop = () => {
-      const root = document.documentElement;
-      const previousBehavior = root.style.scrollBehavior;
-      root.style.scrollBehavior = "auto";
-      window.scrollTo(0, 0);
-      root.style.scrollBehavior = previousBehavior;
-    };
-
-    let initialTopResetActive = !window.location.hash;
-    if (!window.location.hash) {
-      forceTop();
-    }
-
+    // Mobile menu
     menuButton.addEventListener("click", () => {
       const open = body.classList.toggle("menu-open");
       menuButton.setAttribute("aria-expanded", String(open));
-      menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+      menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     });
 
+    // Smooth scroll for in-page links
+    const scrollToTarget = (target) => {
+      const top = target.getBoundingClientRect().top + window.scrollY - nav.offsetHeight + 1;
+      window.scrollTo({ top, behavior: reduced ? "auto" : "smooth" });
+    };
     navLinks.forEach((link) => {
-      link.addEventListener("click", (event) => {
+      link.addEventListener("click", (e) => {
+        const hash = link.getAttribute("href");
+        const target = hash && hash.startsWith("#") ? document.getElementById(hash.slice(1)) : null;
         body.classList.remove("menu-open");
         menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "Open navigation");
-        const hash = link.getAttribute("href");
-        const target = hash ? document.getElementById(hash.slice(1)) : null;
-        if (hash?.startsWith("#") && target) {
-          event.preventDefault();
-          initialTopResetActive = false;
-          history.pushState(null, "", hash);
-          alignHashTarget("smooth");
-          window.setTimeout(updateActiveNav, 260);
-        }
+        if (target) { e.preventDefault(); history.pushState(null, "", hash); scrollToTarget(target); }
       });
     });
+    homeLinks.forEach((link) => link.addEventListener("click", (e) => {
+      e.preventDefault();
+      history.replaceState(null, "", location.pathname);
+      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+    }));
 
-    const scrollToPageTop = (behavior = "smooth") => {
-      body.classList.remove("menu-open");
-      menuButton.setAttribute("aria-expanded", "false");
-      menuButton.setAttribute("aria-label", "Open navigation");
-      if (window.location.hash) {
-        history.replaceState(null, "", window.location.pathname + window.location.search);
+    // Nav shadow on scroll + active section
+    const onScroll = () => {
+      nav.classList.toggle("scrolled", window.scrollY > 8);
+      const line = nav.offsetHeight + Math.min(180, window.innerHeight * 0.24);
+      let current = null;
+      for (const s of sections) {
+        const r = s.getBoundingClientRect();
+        if (r.top <= line && r.bottom > line) { current = s; break; }
       }
-      if (behavior === "auto") {
-        forceTop();
-      } else {
-        window.scrollTo({ top: 0, left: 0, behavior: reducedMotion ? "auto" : behavior });
-      }
-      window.setTimeout(updateActiveNav, behavior === "auto" ? 0 : 260);
+      document.querySelectorAll(".nav-links a").forEach((a) =>
+        a.classList.toggle("active", current && a.getAttribute("href") === "#" + current.id));
     };
+    onScroll();
+    window.addEventListener("scroll", () => requestAnimationFrame(onScroll), { passive: true });
+    window.addEventListener("resize", () => requestAnimationFrame(onScroll));
 
-    homeLinks.forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        initialTopResetActive = false;
-        scrollToPageTop();
-      });
-    });
-
-    if (!reducedMotion) {
-      const revealObserver = new IntersectionObserver((entries) => {
+    // Reveal on scroll
+    if (!reduced && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            revealObserver.unobserve(entry.target);
-          }
+          if (entry.isIntersecting) { entry.target.classList.add("visible"); io.unobserve(entry.target); }
         });
       }, { threshold: 0.12, rootMargin: "0px 0px -40px" });
-      document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
     } else {
-      document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible"));
+      document.querySelectorAll(".reveal").forEach((el) => el.classList.add("visible"));
     }
 
-    const updateActiveNav = () => {
-      const navHeight = document.querySelector(".nav")?.offsetHeight || 0;
-      const focusLine = navHeight + Math.min(180, window.innerHeight * 0.24);
-      const current = sections.find((section) => {
-        const rect = section.getBoundingClientRect();
-        return rect.top <= focusLine && rect.bottom > focusLine;
-      });
-      document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.classList.toggle("active", Boolean(current) && link.getAttribute("href") === `#${current.id}`);
-      });
-    };
-
-    const updateScroll = () => {
-      document.documentElement.style.setProperty("--scroll-y", `${window.scrollY || 0}px`);
-      updateActiveNav();
-    };
-    updateScroll();
-    window.addEventListener("scroll", () => requestAnimationFrame(updateScroll), { passive: true });
-    window.addEventListener("resize", () => requestAnimationFrame(updateScroll));
-
-    const alignHashTarget = (behavior = "auto") => {
-      if (!window.location.hash) return;
-      const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
-      if (!target) return;
-      const navHeight = document.querySelector(".nav")?.offsetHeight || 0;
-      const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
-      window.scrollTo({ top, behavior });
-    };
-
-    window.addEventListener("hashchange", () => {
-      window.setTimeout(() => alignHashTarget("smooth"), 40);
-    });
-
-    window.addEventListener("load", () => {
-      if (window.location.hash) {
-        initialTopResetActive = false;
-        alignHashTarget("auto");
-        updateActiveNav();
-        return;
-      }
-      [0, 120, 360, 720, 1200].forEach((delay) => {
-        window.setTimeout(() => {
-          if (!initialTopResetActive) return;
-          scrollToPageTop("auto");
-          updateActiveNav();
-        }, delay);
-      });
-      window.setTimeout(() => {
-        initialTopResetActive = false;
-      }, 1300);
-    });
-
-    document.getElementById("contact-form").addEventListener("submit", (event) => {
-      event.preventDefault();
-      event.currentTarget.querySelector(".form-status").classList.add("visible");
-      event.currentTarget.reset();
+    // Form
+    document.getElementById("contact-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      e.currentTarget.querySelector(".form-status").classList.add("visible");
+      e.currentTarget.reset();
     });
   </script>
 </body>
