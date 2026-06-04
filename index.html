@@ -552,6 +552,22 @@
       -webkit-text-fill-color: transparent;
     }
     .outcome span { color: var(--slate); font-size: 14.5px; line-height: 1.45; max-width: 200px; display: block; }
+    .outcome b sup {
+      font-size: .4em;
+      font-weight: 700;
+      vertical-align: super;
+      -webkit-text-fill-color: var(--accent);
+      color: var(--accent);
+      margin-left: 3px;
+    }
+    .outcome-note {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      max-width: 760px;
+    }
+    .outcome-note .star { color: var(--accent); font-weight: 700; }
 
     /* ---------- Who we serve ---------- */
     .serve { background: var(--bg-soft); }
@@ -951,11 +967,12 @@
           <p class="lede">The systems we build are measured by the work they unlock — less manual effort, faster decisions, and reliable delivery.</p>
         </div>
         <div class="outcomes-grid">
-          <div class="outcome reveal"><b>20–40%</b><span>Reduction in manual reporting work</span></div>
-          <div class="outcome reveal" style="--i:1"><b>2–4×</b><span>Faster approval cycles</span></div>
-          <div class="outcome reveal" style="--i:2"><b>30%+</b><span>Improvement in on-time delivery</span></div>
-          <div class="outcome reveal" style="--i:3"><b>$250K+</b><span>Annual value unlocked in efficiency</span></div>
+          <div class="outcome reveal"><b>20–40%<sup>*</sup></b><span>Reduction in manual reporting work</span></div>
+          <div class="outcome reveal" style="--i:1"><b>2–4×<sup>*</sup></b><span>Faster approval cycles</span></div>
+          <div class="outcome reveal" style="--i:2"><b>30%+<sup>*</sup></b><span>Improvement in on-time delivery</span></div>
+          <div class="outcome reveal" style="--i:3"><b>$250K+<sup>*</sup></b><span>Annual value unlocked in efficiency</span></div>
         </div>
+        <p class="outcome-note reveal"><span class="star">*</span> Representative ranges based on typical operational-modernization engagements. Actual results vary by organization, scope, and starting point.</p>
       </div>
     </section>
 
