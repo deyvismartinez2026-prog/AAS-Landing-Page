@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brandbook | Advanced Agentic Systems</title>
+  <meta name="description" content="The Advanced Agentic Systems brand guidelines — logo, color, typography, motif, and real-world applications." />
+  <link rel="icon" href="assets/logo-mark.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: "Sora";
+      src: url("assets/Sora-VariableFont_wght.ttf") format("truetype");
+      font-weight: 100 800; font-style: normal; font-display: swap;
+    }
+
+    :root {
+      --blue: #1E5BFF;
+      --blue-press: #1a4fe0;
+      --charcoal: #0F1115;
+      --slate: #4B5563;
+      --gray: #E5E7EB;
+      --ice: #F5F6F8;
+      --white: #ffffff;
+      --board: #e8ecf2;
+      --ink: #0F1115;
+      --muted: #8b94a4;
+      --line: #e7eaef;
+      --r: 20px;
+      --r-sm: 13px;
+      --shadow: 0 1px 2px rgba(15,17,21,.04), 0 18px 40px -22px rgba(15,17,21,.22);
+      --shadow-lg: 0 40px 80px -34px rgba(15,17,21,.34);
+      --ease: cubic-bezier(.22,.68,.24,1);
+      --font: "Sora", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-2: "Inter", system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--board);
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { width: min(1280px, calc(100% - 48px)); margin: 0 auto; }
+
+    /* ---- Top bar ---- */
+    .top {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 26px 0 22px;
+    }
+    .top .brand { display: inline-flex; align-items: center; gap: 14px; }
+    .top .brand img { height: 24px; }
+    .top .brand b { font-size: 13px; font-weight: 600; letter-spacing: -.01em; color: var(--ink); }
+    .top .brand b span { color: var(--muted); font-weight: 500; }
+    .top a.back {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--slate); font-size: 13.5px; font-weight: 500;
+      padding: 9px 16px; border: 1px solid var(--line); border-radius: 10px; background: #fff;
+      transition: border-color .16s var(--ease), color .16s var(--ease);
+    }
+    .top a.back:hover { border-color: var(--ink); color: var(--ink); }
+
+    /* ---- Cover ---- */
+    .cover {
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #2a66ff 0%, var(--blue) 48%, #1747e6 100%);
+      box-shadow: var(--shadow-lg);
+      padding: clamp(44px, 7vw, 92px) clamp(32px, 6vw, 80px);
+      min-height: 360px;
+      display: grid;
+      align-content: space-between;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+    .cover::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+      background:
+        repeating-linear-gradient(125deg, transparent 0 38px, rgba(255,255,255,.07) 38px 40px, transparent 40px 80px);
+      mask-image: linear-gradient(90deg, transparent, #000 30%, #000 100%);
+    }
+    .cover::after {
+      content: ""; position: absolute; right: -8%; top: -30%;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,.18), transparent 60%);
+      pointer-events: none;
+    }
+    .cover-top, .cover-bottom { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; }
+    .cover-eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.86); }
+    .cover-logo { position: relative; z-index: 1; padding: clamp(20px,4vw,46px) 0; }
+    .cover-logo img { height: clamp(46px, 7vw, 92px); width: auto; filter: drop-shadow(0 12px 30px rgba(0,0,0,.22)); }
+    .cover-bottom span { font-size: 14px; color: rgba(255,255,255,.86); font-weight: 500; }
+
+    /* ---- Board grid ---- */
+    .board { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; }
+    .card {
+      grid-column: span 2;
+      display: flex; flex-direction: column;
+      background: #fff; border: 1px solid var(--line); border-radius: var(--r);
+      box-shadow: var(--shadow); padding: 26px; overflow: hidden;
+    }
+    .w3 { grid-column: span 3; }
+    .w6 { grid-column: span 6; }
+
+    .card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+    .card-head span { font-size: 11.5px; font-weight: 600; letter-spacing: .04em; color: var(--muted); }
+    .card-head .tag { color: var(--blue); }
+    .card h3 { margin: 0 0 10px; font-size: 21px; font-weight: 600; letter-spacing: -.02em; }
+    .card p { margin: 0; color: var(--slate); font-size: 13.5px; line-height: 1.6; }
+    .card .body { margin-top: auto; padding-top: 18px; }
+
+    /* logo dark panel */
+    .logo-panel {
+      display: grid; place-items: center;
+      background: var(--charcoal); border-radius: var(--r-sm);
+      padding: 38px 24px; margin-bottom: 4px;
+    }
+    .logo-panel img { height: 34px; width: auto; }
+
+    /* logo color use swatches */
+    .logo-uses { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 4px; }
+    .logo-use { display: grid; place-items: center; height: 92px; border-radius: var(--r-sm); padding: 0 14px; }
+    .logo-use img { height: 22px; width: auto; max-width: 100%; }
+    .lu-white { background: var(--ice); border: 1px solid var(--line); }
+    .lu-charcoal { background: var(--charcoal); }
+    .lu-blue { background: var(--blue); }
+    .lu-slate { background: var(--slate); }
+
+    /* icon card */
+    .icon-stage { display: grid; place-items: center; background: var(--ice); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 26px; margin-bottom: 4px; }
+    .icon-stage img { width: 116px; height: auto; }
+
+    /* color palette */
+    .swatches { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 4px; }
+    .sw { }
+    .sw .chip { height: 70px; border-radius: 11px; border: 1px solid rgba(15,17,21,.06); }
+    .sw b { display: block; margin-top: 10px; font-size: 12px; font-weight: 600; letter-spacing: -.01em; }
+    .sw small { display: block; color: var(--muted); font-size: 11px; font-family: var(--font-2); letter-spacing: .02em; }
+
+    /* typography */
+    .type-spec { display: grid; grid-template-columns: 96px 1fr; gap: 18px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .type-spec:last-of-type { border-bottom: 0; }
+    .type-aa { font-size: 64px; line-height: .8; font-weight: 600; letter-spacing: -.04em; color: var(--ink); }
+    .type-spec strong { display: block; font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
+    .type-spec em { font-style: normal; display: block; color: var(--muted); font-size: 12px; margin: 2px 0 8px; }
+    .type-weights { color: var(--slate); font-size: 12.5px; }
+
+    /* attributes */
+    .attrs { display: grid; gap: 14px; }
+    .attr { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; }
+    .attr svg { width: 22px; height: 22px; color: var(--blue); stroke-width: 1.7; margin-top: 1px; }
+    .attr b { font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
+    .attr span { display: block; color: var(--slate); font-size: 12.5px; line-height: 1.45; }
+
+    /* voice */
+    .voice-big { font-size: clamp(22px, 2.5vw, 28px); font-weight: 600; letter-spacing: -.025em; line-height: 1.15; margin-bottom: 16px; }
+    .voice-big em { font-style: normal; color: var(--blue); }
+    .voice-list { display: grid; gap: 8px; }
+    .voice-list span { color: var(--slate); font-size: 13px; }
+    .voice-list b { color: var(--ink); font-weight: 600; }
+
+    /* application image cards */
+    .app { padding: 0; }
+    .app img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+    .app .app-cap { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-top: 1px solid var(--line); }
+    .app .app-cap b { font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
+    .app .app-cap span { font-size: 11.5px; font-weight: 600; color: var(--blue); letter-spacing: .03em; }
+
+    /* motif strip */
+    .motif {
+      grid-column: span 6;
+      position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 1.1fr 1fr; align-items: stretch;
+      background: var(--charcoal); border: 0; color: #fff; padding: 0;
+    }
+    .motif .motif-copy { padding: clamp(28px,3.5vw,44px); align-self: center; }
+    .motif .card-head span { color: rgba(255,255,255,.6); }
+    .motif .card-head .tag { color: #7aa2ff; }
+    .motif h3 { color: #fff; }
+    .motif p { color: rgba(255,255,255,.66); }
+    .motif .motif-art {
+      position: relative; min-height: 200px;
+      background:
+        repeating-linear-gradient(125deg, transparent 0 22px, rgba(122,162,255,.16) 22px 24px, transparent 24px 46px),
+        repeating-linear-gradient(55deg, transparent 0 22px, rgba(255,255,255,.05) 22px 23px, transparent 23px 46px),
+        linear-gradient(135deg, #14306b, #0f1115);
+    }
+    .motif .motif-art::after {
+      content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+      width: 0; height: 0; border-left: 26px solid transparent; border-right: 26px solid transparent; border-bottom: 44px solid var(--blue);
+      filter: drop-shadow(0 0 30px rgba(30,91,255,.6));
+    }
+
+    /* footer cta */
+    .bb-foot {
+      margin: 28px 0 56px; padding: clamp(30px,4vw,48px);
+      background: #fff; border: 1px solid var(--line); border-radius: var(--r);
+      box-shadow: var(--shadow);
+      display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
+    .bb-foot h3 { margin: 0 0 6px; font-size: clamp(20px,2.4vw,26px); font-weight: 600; letter-spacing: -.02em; }
+    .bb-foot p { margin: 0; color: var(--slate); font-size: 14px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      height: 50px; padding: 0 24px; border-radius: 12px;
+      background: var(--blue); color: #fff; font-size: 14.5px; font-weight: 600; letter-spacing: -.01em;
+      transition: transform .18s var(--ease), background .18s var(--ease);
+    }
+    .btn:hover { background: var(--blue-press); transform: translateY(-1px); }
+    .btn svg { width: 17px; height: 17px; stroke-width: 2; }
+
+    @media (max-width: 1040px) {
+      .board { grid-template-columns: repeat(4, 1fr); }
+      .w3 { grid-column: span 2; }
+      .w6, .motif { grid-column: span 4; }
+    }
+    @media (max-width: 680px) {
+      .board { grid-template-columns: 1fr; }
+      .card, .w3, .w6, .motif { grid-column: 1 / -1; }
+      .motif { grid-template-columns: 1fr; }
+      .swatches { grid-template-columns: 1fr 1fr; }
+      .top a.back { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="index.html" aria-label="Advanced Agentic Systems home">
+        <img src="assets/logo-nav-dark.png" alt="Advanced Agentic Systems" />
+      </a>
+      <a class="back" href="services/ai-marketing-branding-agency.html">← Back to the case study</a>
+    </header>
+
+    <!-- COVER -->
+    <section class="cover">
+      <div class="cover-top">
+        <span class="cover-eyebrow">Brandbook</span>
+        <span class="cover-eyebrow">2026</span>
+      </div>
+      <div class="cover-logo">
+        <img src="assets/logo-nav.png" alt="Advanced Agentic Systems" />
+      </div>
+      <div class="cover-bottom">
+        <span>Brand Guidelines</span>
+        <span>Advancing intelligence. Empowering autonomy.</span>
+      </div>
+    </section>
+
+    <!-- BOARD -->
+    <section class="board">
+
+      <!-- Logo -->
+      <article class="card w3">
+        <div class="card-head"><span>Logo</span><span>AAS brand guide</span></div>
+        <div class="logo-panel"><img src="assets/logo-nav.png" alt="Advanced Agentic Systems logo, reversed" /></div>
+        <div class="body">
+          <h3>Logo</h3>
+          <p>A precise, ascending monogram paired with a clean geometric wordmark. It signals structure, intelligence, and forward motion — and stays legible from a favicon to a building façade.</p>
+        </div>
+      </article>
+
+      <!-- Logo color use -->
+      <article class="card w3">
+        <div class="card-head"><span>Logo color use</span><span>AAS brand guide</span></div>
+        <div class="logo-uses">
+          <div class="logo-use lu-white"><img src="assets/logo-nav-dark.png" alt="Logo on light" /></div>
+          <div class="logo-use lu-charcoal"><img src="assets/logo-nav.png" alt="Logo on charcoal" /></div>
+          <div class="logo-use lu-blue"><img src="assets/logo-nav.png" alt="Logo on royal blue" /></div>
+          <div class="logo-use lu-slate"><img src="assets/logo-nav.png" alt="Logo on slate" /></div>
+        </div>
+        <div class="body">
+          <h3>Logo color use</h3>
+          <p>Use the ink lockup on light fields and the reversed lockup on charcoal, blue, or slate. Preserve clear space, keep contrast high, and never recolor or distort the wordmark.</p>
+        </div>
+      </article>
+
+      <!-- Color palette -->
+      <article class="card w3">
+        <div class="card-head"><span>Color palette</span><span>AAS brand guide</span></div>
+        <div class="swatches">
+          <div class="sw"><div class="chip" style="background:#1E5BFF"></div><b>Royal Blue</b><small>#1E5BFF</small></div>
+          <div class="sw"><div class="chip" style="background:#0F1115"></div><b>Charcoal</b><small>#0F1115</small></div>
+          <div class="sw"><div class="chip" style="background:#4B5563"></div><b>Slate</b><small>#4B5563</small></div>
+          <div class="sw"><div class="chip" style="background:#E5E7EB"></div><b>Light Gray</b><small>#E5E7EB</small></div>
+          <div class="sw"><div class="chip" style="background:#F5F6F8"></div><b>Ice</b><small>#F5F6F8</small></div>
+          <div class="sw"><div class="chip" style="background:#FFFFFF"></div><b>White</b><small>#FFFFFF</small></div>
+        </div>
+        <div class="body">
+          <h3>Color palette</h3>
+          <p>Royal Blue leads as the accent. Charcoal and slate carry structure and text; light gray, ice, and white provide calm, spacious surfaces.</p>
+        </div>
+      </article>
+
+      <!-- Typography -->
+      <article class="card w3">
+        <div class="card-head"><span>Typography</span><span>AAS brand guide</span></div>
+        <div class="type-spec">
+          <div class="type-aa" style="font-family:var(--font)">Aa</div>
+          <div>
+            <strong>Sora</strong>
+            <em>Primary · Display &amp; headlines</em>
+            <div class="type-weights">Light · Regular · Medium · Semibold · Bold</div>
+          </div>
+        </div>
+        <div class="type-spec">
+          <div class="type-aa" style="font-family:var(--font-2); font-weight:600">Aa</div>
+          <div>
+            <strong style="font-family:var(--font-2)">Inter</strong>
+            <em>Secondary · Body &amp; interface</em>
+            <div class="type-weights" style="font-family:var(--font-2)">Regular · Medium · Semibold</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Icon -->
+      <article class="card">
+        <div class="card-head"><span>Icon</span><span class="tag">Mark</span></div>
+        <div class="icon-stage"><img src="assets/logo-mark.png" alt="Advanced Agentic Systems icon" /></div>
+        <div class="body">
+          <h3>Icon</h3>
+          <p>A stacked, ascending “A” built from precise angles, with a blue apex marking momentum. Works standalone as an app icon, favicon, or pattern unit.</p>
+        </div>
+      </article>
+
+      <!-- Brand attributes -->
+      <article class="card">
+        <div class="card-head"><span>Brand attributes</span><span class="tag">Voice</span></div>
+        <div class="attrs">
+          <div class="attr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/><circle cx="12" cy="12" r="4"/></svg><div><b>Intelligent</b><span>Smart solutions, smarter outcomes.</span></div></div>
+          <div class="attr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg><div><b>Precise</b><span>Built with accuracy and attention to detail.</span></div></div>
+          <div class="attr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg><div><b>Modern</b><span>Contemporary design that looks ahead.</span></div></div>
+          <div class="attr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z"/><path d="M9 12l2 2 4-5"/></svg><div><b>Trusted</b><span>Reliable systems, dependable partner.</span></div></div>
+          <div class="attr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M19 5l-2 2M7 17l-2 2M19 19l-2-2M7 7L5 5"/></svg><div><b>Operational</b><span>Designed to perform, built to scale.</span></div></div>
+          <div class="attr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 6 3-6"/></svg><div><b>Premium</b><span>Exceptional quality in every detail.</span></div></div>
+        </div>
+      </article>
+
+      <!-- Voice -->
+      <article class="card">
+        <div class="card-head"><span>Tagline &amp; voice</span><span>AAS brand guide</span></div>
+        <div class="voice-big">Intelligent systems.<br /><em>Operational impact.</em></div>
+        <div class="voice-list">
+          <span><b>Clear</b> over clever.</span>
+          <span><b>Precise</b> over vague.</span>
+          <span><b>Confident,</b> never loud.</span>
+        </div>
+      </article>
+
+      <!-- Applications -->
+      <article class="card app">
+        <img src="assets/cs-bb-3d.jpg" alt="AAS logo as dimensional reception signage" loading="lazy" />
+        <div class="app-cap"><b>Reception signage</b><span>APPLICATION</span></div>
+      </article>
+      <article class="card app">
+        <img src="assets/cs-bb-wood.jpg" alt="AAS logo engraved on a wood panel" loading="lazy" />
+        <div class="app-cap"><b>Environmental</b><span>APPLICATION</span></div>
+      </article>
+      <article class="card app">
+        <img src="assets/cs-bb-embossed.jpg" alt="AAS logo letterpressed on a business card" loading="lazy" />
+        <div class="app-cap"><b>Print &amp; stationery</b><span>APPLICATION</span></div>
+      </article>
+
+      <!-- Motif -->
+      <article class="motif">
+        <div class="motif-copy">
+          <div class="card-head"><span>Pattern &amp; motif</span><span class="tag">System</span></div>
+          <h3>A motif drawn from the mark.</h3>
+          <p>The brand pattern is derived from the monogram’s angles and geometry — a subtle structural accent that adds movement and depth across signage, decks, and digital surfaces, always secondary to the logo.</p>
+        </div>
+        <div class="motif-art" aria-hidden="true"></div>
+      </article>
+
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="bb-foot">
+      <div>
+        <h3>This is the brand we built for ourselves.</h3>
+        <p>Advanced Agentic Systems can build the same level of craft into your identity.</p>
+      </div>
+      <a class="btn" href="index.html#contact">Work with the AAS team
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </a>
+    </section>
+  </div>
+</body>
+</html>
